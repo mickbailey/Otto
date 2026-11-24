@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" class="otto-theme">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATS · New activity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/components.css">
+<style>
+/* Page-only: which requisition is attached (one radio per req, :has() shows the matching chip, row and panel) */
+.ats-radios { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.ats-chip, .ats-rq, .ats-none { display: none; }
+.otto-theme:has(#ats-r1:checked) .ats-chip--r1,
+.otto-theme:has(#ats-r2:checked) .ats-chip--r2,
+.otto-theme:has(#ats-r3:checked) .ats-chip--r3 { display: inline-flex; }
+.otto-theme:has(#ats-r1:checked) .ats-rq--r1,
+.otto-theme:has(#ats-r2:checked) .ats-rq--r2,
+.otto-theme:has(#ats-r3:checked) .ats-rq--r3,
+.otto-theme:has(#ats-r0:checked) .ats-none { display: block; }
+.otto-theme:has(#ats-r1:checked) [for="ats-r1"].otto-combobox__option,
+.otto-theme:has(#ats-r2:checked) [for="ats-r2"].otto-combobox__option,
+.otto-theme:has(#ats-r3:checked) [for="ats-r3"].otto-combobox__option { background: var(--otto-accent-700); }
+</style>
+</head>
+<body style="margin: 0">
+
+<div class="ats-radios">
+  <input type="radio" name="ats-req" id="ats-r0" aria-label="No requisition">
+  <input type="radio" name="ats-req" id="ats-r1" aria-label="Controls Engineer, Warehouse Automation">
+  <input type="radio" name="ats-req" id="ats-r2" aria-label="Embedded Systems Engineer, Fleet IoT" checked>
+  <input type="radio" name="ats-req" id="ats-r3" aria-label="RFID and Scanner Hardware Engineer">
+</div>
+
+<div class="otto-app">
+  <nav class="otto-sidenav" aria-label="Main">
+    <a class="otto-sidenav__item otto-sidenav__item--menu" href="#" aria-label="Collapse menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h12M3 12h9M3 18h12M21 8l-4 4 4 4"/></svg></a>
+    <a class="otto-sidenav__item" href="#" aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5z"/></svg></a>
+    <a class="otto-sidenav__item" href="#" aria-label="Candidates" aria-current="page"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6z"/></svg></a>
+    <a class="otto-sidenav__item" href="#" aria-label="Jobs"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V6a2 2 0 0 1 2-2zm0 3h6V6H9z"/></svg></a>
+    <a class="otto-sidenav__item" href="#" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.8"/><path d="M2 19c0-3.3 3.1-5 7-5s7 1.7 7 5zm14.5 0c0-1.6-.6-3-1.8-4 3.4-.3 7.3.8 7.3 4z"/></svg></a>
+    <a class="otto-sidenav__item" href="#" aria-label="Requisitions"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 3h4v4h-4z"/><path d="M4 6h5v2h6V6h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm4 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-3 7h6c0-1.7-1.3-2.5-3-2.5S5 17.3 5 19zm8-6v1.6h6V13zm0 3.2v1.6h4.5v-1.6z" fill-rule="evenodd"/></svg></a>
+  </nav>
+
+  <div class="otto-app__main">
+    <header class="otto-topbar">
+      <button type="button" class="otto-user"><span class="otto-avatar otto-avatar--sm">MO</span>Marisol Ortega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </header>
+
+    <div class="otto-page otto-page--split otto-page--cropped">
+      <main class="otto-page__main">
+        <nav class="otto-breadcrumb" aria-label="Breadcrumb">
+          <a href="#" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+          <a href="#">Candidates</a><span aria-hidden="true">/</span><a href="#">Priya Natarajan</a><span aria-hidden="true">/</span><span aria-current="page">Activity</span>
+        </nav>
+
+        <div class="otto-page__head">
+          <h1 class="otto-display" style="font-size: 30px">New activity</h1>
+          <button type="button" class="otto-btn otto-btn--secondary">Cancel</button>
+          <button type="button" class="otto-btn otto-btn--primary">Submit</button>
+        </div>
+
+        <section class="otto-card" aria-label="New activity form">
+          <div class="otto-card__header otto-contact">
+            <strong>Priya Natarajan</strong>
+            <a href="mailto:priya.natarajan88@gmail.com"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7.5V9l8 4.7L20 9V7.5z"/></svg>priya.natarajan88@gmail.com</a>
+            <a href="tel:2125550148"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>(212) 555-0148</a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M4 19h16"/></svg>Resume</a>
+          </div>
+
+          <div class="otto-card__body">
+            <h2 class="otto-title">Attach a requisition to this activity</h2>
+
+            <div class="otto-combobox">
+              <div class="otto-combobox__control" tabindex="0" role="button" aria-label="Search requisitions">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <span class="otto-chip ats-chip ats-chip--r1">Controls Engineer, Warehouse Automation<label class="otto-chip__remove" for="ats-r0" aria-label="Remove requisition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></label></span>
+                <span class="otto-chip ats-chip ats-chip--r2">Embedded Systems Engineer, Fleet IoT<label class="otto-chip__remove" for="ats-r0" aria-label="Remove requisition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></label></span>
+                <span class="otto-chip ats-chip ats-chip--r3">RFID &amp; Scanner Hardware Engineer<label class="otto-chip__remove" for="ats-r0" aria-label="Remove requisition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></label></span>
+                <span class="otto-combobox__placeholder">Search by title, client or AM…</span>
+              </div>
+              <div class="otto-combobox__menu" role="group" aria-label="Requisitions">
+                <label class="otto-combobox__option" for="ats-r1" tabindex="-1">
+                  <span class="otto-combobox__option-title">Controls Engineer, Warehouse Automation</span>
+                  <span class="otto-combobox__option-sub">Planet Express</span>
+                  <span class="otto-combobox__option-meta">AM: <span class="otto-avatar otto-avatar--xs">AK</span>Alex Kiaya · HM: Danielle Johnson</span>
+                </label>
+                <label class="otto-combobox__option" for="ats-r2" tabindex="-1">
+                  <span class="otto-combobox__option-title">Embedded Systems Engineer, Fleet IoT</span>
+                  <span class="otto-combobox__option-sub">Planet Express</span>
+                  <span class="otto-combobox__option-meta">AM: <span class="otto-avatar otto-avatar--xs">AK</span>Alex Kiaya · HM: Emily Carter</span>
+                </label>
+                <label class="otto-combobox__option" for="ats-r3" tabindex="-1">
+                  <span class="otto-combobox__option-title">RFID &amp; Scanner Hardware Engineer</span>
+                  <span class="otto-combobox__option-sub">Northstar</span>
+                  <span class="otto-combobox__option-meta">AM: <span class="otto-avatar otto-avatar--xs">AK</span>Alex Kiaya · HM: Sofia Chen</span>
+                </label>
+                <span class="otto-combobox__footer">3 open requisitions</span>
+              </div>
+            </div>
+
+            <div class="otto-field-row">
+              <div class="otto-field"><span class="otto-label">Activity type</span><div class="otto-input otto-input--static">Candidate profile (CPF)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></div></div>
+              <div class="otto-field"><span class="otto-label">Date</span><div class="otto-input otto-input--static">Nov 9, 2026 · 10:30 AM<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></div></div>
+            </div>
+            <div class="otto-field-row">
+              <div class="otto-field"><span class="otto-label">Current role</span><div class="otto-input otto-input--static">Firmware Engineer II, Halcyon Robotics</div></div>
+              <div class="otto-field"><span class="otto-label">Start availability</span><div class="otto-input otto-input--static">Dec 1, 2026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></div></div>
+            </div>
+            <div class="otto-field-row">
+              <div class="otto-field"><span class="otto-label">Education</span><div class="otto-input otto-input--static">BS, Computer Engineering<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></div></div>
+              <div class="otto-field"><span class="otto-label">Desired pay</span><div class="otto-input otto-input--static">$145K</div></div>
+            </div>
+            <div class="otto-field"><span class="otto-label">Skill sets</span><div class="otto-input otto-input--static"><span class="otto-tags"><span class="otto-tag">C / C++</span><span class="otto-tag">ARM Cortex-M</span><span class="otto-tag">FreeRTOS</span><span class="otto-tag">Zephyr</span><span class="otto-tag">LTE-M / NB-IoT</span><span class="otto-tag">GPS / GNSS</span><span class="otto-tag">OTA updates</span></span></div></div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="otto-page__aside" aria-label="Requisition summary">
+        <div class="otto-page__aside-inner">
+          <p class="otto-notice"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 3l1.6 4.4L16 9l-4.4 1.6L10 15l-1.6-4.4L4 9l4.4-1.6zm8 9 .9 2.1L21 15l-2.1.9L18 18l-.9-2.1L15 15l2.1-.9zM18 2l.7 1.3L20 4l-1.3.7L18 6l-.7-1.3L16 4l1.3-.7z"/></svg><span>Requisition summary and screening questions use AI. Check for accuracy.</span></p>
+
+          <div class="ats-none"><div class="otto-section"><strong class="otto-subtitle" style="font-size: 15px">No requisition attached</strong><span class="otto-muted">Attach one to see a plain-language summary of the job and screening questions for this call.</span></div></div>
+
+          <div class="ats-rq ats-rq--r1">
+            <div class="otto-section">
+              <h3>Attached requisition</h3>
+              <span class="otto-chip otto-chip--lg" style="align-self: flex-start">Controls Engineer, Warehouse Automation</span>
+              <span class="otto-body-lg">Planet Express</span>
+              <span class="otto-meta"><span>AM: Alex Kiaya</span><span>HM: Danielle Johnson</span></span>
+            </div>
+            <div class="otto-section">
+              <h3>What's this job really about?</h3>
+              <p>This engineer keeps the conveyors, sorters and robots in the Red Oak warehouse running. They program and troubleshoot the PLCs that control the equipment, tune it to move more packages per hour, and fix problems on the floor fast when a line goes down. It's an onsite role with some evening coverage during peak season.</p>
+              <h3>Screening questions</h3>
+              <ol class="otto-qlist">
+                <li><b>Experience:</b> “Which PLC platforms have you programmed, and what kind of material-handling equipment did they run?” <i>Listen for: Allen-Bradley or Siemens, ladder logic, conveyors or sortation.</i></li>
+                <li><b>Troubleshooting:</b> “Tell me about a line-down you fixed. How did you find the cause?” <i>Listen for: a calm, step-by-step approach and reading I/O and fault logs.</i></li>
+                <li><b>Improvement:</b> “Have you increased throughput on a system? What did you change?” <i>Listen for: real numbers, like packages per hour before and after.</i></li>
+                <li><b>Schedule:</b> “Peak season needs some evening and weekend coverage. Does that work for you?” <i>Listen for: a clear yes and no conflicts.</i></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="ats-rq ats-rq--r2">
+            <div class="otto-section">
+              <h3>Attached requisition</h3>
+              <span class="otto-chip otto-chip--lg" style="align-self: flex-start">Embedded Systems Engineer, Fleet IoT</span>
+              <span class="otto-body-lg">Planet Express</span>
+              <span class="otto-meta"><span>AM: Alex Kiaya</span><span>HM: Emily Carter</span></span>
+            </div>
+            <div class="otto-section">
+              <h3>What's this job really about?</h3>
+              <p>This engineer builds the software that runs on the small computers inside Planet Express trucks and trailers. Those devices track location, engine health, temperature and driver activity, then send the data back over cellular networks. The work means writing low-level code in C or C++ and making it reliable, low-power and secure in rough road conditions. It also includes updating devices remotely and working with the hardware and data teams on fleet tracking and the upcoming telematics rollout.</p>
+              <h3>Screening questions</h3>
+              <ol class="otto-qlist">
+                <li><b>Experience:</b> “Tell me about an embedded device you've shipped. What microcontroller and RTOS did you use, and what part of the firmware did you own?” <i>Listen for: hands-on C/C++ on ARM Cortex-M or similar, FreeRTOS or Zephyr, and code that actually shipped.</i></li>
+                <li><b>Connectivity:</b> “Have you worked with devices that send data over cellular (LTE-M, NB-IoT) or GPS/GNSS modules? How did you deal with lost connections?” <i>Listen for: retries, buffering data while offline, and awareness of power use.</i></li>
+                <li><b>Remote updates:</b> “How have you handled firmware updates sent over the air to devices already in the field? What happens if an update fails halfway?” <i>Listen for: fallback to the previous version, signed images and staged rollouts.</i></li>
+                <li><b>Field debugging:</b> “Describe a bug that only showed up on devices in the field, not on your desk. How did you track it down?” <i>Listen for: logging and remote diagnostics, a scope or logic analyzer, and a clear, methodical approach.</i></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="ats-rq ats-rq--r3">
+            <div class="otto-section">
+              <h3>Attached requisition</h3>
+              <span class="otto-chip otto-chip--lg" style="align-self: flex-start">RFID &amp; Scanner Hardware Engineer</span>
+              <span class="otto-body-lg">Northstar</span>
+              <span class="otto-meta"><span>AM: Alex Kiaya</span><span>HM: Sofia Chen</span></span>
+            </div>
+            <div class="otto-section">
+              <h3>What's this job really about?</h3>
+              <p>This engineer designs and tests the RFID readers and handheld scanners warehouse staff use to track every package. They pick antennas and chips, lay out circuit boards, and make sure the devices read tags reliably through cardboard, metal shelving and busy radio environments. They also work with suppliers to get new hardware certified and into production.</p>
+              <h3>Screening questions</h3>
+              <ol class="otto-qlist">
+                <li><b>Experience:</b> “What RFID or barcode hardware have you designed or brought to production?” <i>Listen for: UHF RFID, antenna design and work that went past the prototype stage.</i></li>
+                <li><b>Read rates:</b> “How have you improved read rates in a tough environment, like near metal or liquids?” <i>Listen for: antenna tuning, field testing and measured results.</i></li>
+                <li><b>Board design:</b> “Which PCB tools do you use, and have you designed RF boards yourself?” <i>Listen for: Altium or similar, impedance control and RF layout experience.</i></li>
+                <li><b>Certification:</b> “Have you taken a radio device through FCC certification?” <i>Listen for: pre-compliance testing and working with test labs.</i></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+</body>
+</html>

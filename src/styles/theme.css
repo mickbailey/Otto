@@ -1,0 +1,30 @@
+/* App stylesheet.
+   1. Tailwind v4 for layout utilities (flex, grid, gap, padding).
+   2. Otto tokens + components: the only source of color, type, radius and spacing.
+   3. @theme inline maps Otto tokens to Tailwind names, so utilities like bg-surface,
+      text-muted or rounded-px stay on-system. Never hard-code a color in a page. */
+@import "tailwindcss";
+@import "../../design-system/css/tokens.css";
+@import "../../design-system/css/components.css";
+@import "./template-extras.css";
+
+@theme inline {
+  --color-background: var(--otto-surface-900);
+  --color-surface: var(--otto-surface-800);
+  --color-raised: var(--otto-surface-700);
+  --color-foreground: var(--otto-on-surface-800);
+  --color-muted: var(--otto-on-surface-600);
+  --color-primary: var(--otto-primary-800);
+  --color-secondary: var(--otto-accent-200);
+  --color-navy: var(--otto-accent-800);
+  --color-border: var(--otto-border);
+  --color-success: var(--otto-success-800);
+  --color-warning: var(--otto-warning-800);
+  --color-destructive: var(--otto-destructive-800);
+  --font-sans: var(--otto-font);
+  --font-mono: var(--otto-font-mono);
+  --radius-px: var(--otto-radius);
+}
+
+html, body, #root { height: 100%; }
+body { margin: 0; }

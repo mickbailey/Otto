@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en" class="otto-theme">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Otto · Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/components.css">
+<style>
+  html, body { margin: 0; }
+  .sc-wrap { max-width: 1120px; margin: 0 auto; padding: 40px 24px 120px; display: flex; flex-direction: column; gap: 56px; }
+  .sc-intro { display: flex; flex-direction: column; gap: 8px; }
+  .sc-section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 24px; }
+  .sc-section__head { position: relative; display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--otto-border); padding-bottom: 10px; }
+  .sc-section__head h2 { margin-right: auto; }
+  .sc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .sc-row + .sc-row { margin-top: 2px; }
+  .sc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .sc-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .sc-swatch { border-radius: var(--otto-radius); overflow: hidden; border: 1px solid var(--otto-border); }
+  .sc-swatch__fill { height: 48px; }
+  .sc-swatch__label { padding: 8px 10px; font: var(--otto-text-caption); display: flex; flex-direction: column; gap: 2px; background: var(--otto-surface-800); }
+  .sc-swatch__label code { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 11px; color: var(--otto-on-surface-600); }
+  .sc-type-row { display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--otto-on-surface-300); }
+  .sc-type-row code { margin-left: auto; font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 12px; color: var(--otto-on-surface-600); white-space: nowrap; }
+  .sc-card-demo { width: 320px; }
+  .sc-note { font: var(--otto-text-caption); color: var(--otto-on-surface-600); }
+  .sc-permalink { position: absolute; left: -20px; top: 2px; opacity: 0; color: var(--otto-on-surface-600); text-decoration: none; }
+  .sc-section__head:hover .sc-permalink { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="sc-wrap">
+
+  <div class="sc-intro">
+    <span class="otto-overline otto-muted">Otto design system</span>
+    <h1 class="otto-display" style="font-size:32px">Component showcase</h1>
+    <p class="otto-body-lg otto-muted" style="max-width:640px">Every component in <code class="mono">css/components.css</code>, rendered with the real tokens and classes. This page reads the live CSS files directly — editing tokens in the Playground tab and saving updates what you see here too.</p>
+  </div>
+
+  <!-- ===== Foundations ===== -->
+  <section class="sc-section" id="tokens">
+    <div class="sc-section__head"><a class="sc-permalink" href="#tokens" aria-hidden="true">#</a><h2 class="otto-headline">Foundations</h2></div>
+
+    <h3 class="otto-subtitle">Color</h3>
+    <div class="sc-swatches">
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-surface-900)"></div><div class="sc-swatch__label">surface-900<code>--otto-surface-900</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-surface-800)"></div><div class="sc-swatch__label">surface-800<code>--otto-surface-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-surface-700)"></div><div class="sc-swatch__label">surface-700<code>--otto-surface-700</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-primary-800)"></div><div class="sc-swatch__label">primary-800<code>--otto-primary-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-primary-900)"></div><div class="sc-swatch__label">primary-900<code>--otto-primary-900</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-accent-200)"></div><div class="sc-swatch__label">accent-200<code>--otto-accent-200</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-accent-300)"></div><div class="sc-swatch__label">accent-300<code>--otto-accent-300</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-accent-700)"></div><div class="sc-swatch__label">accent-700<code>--otto-accent-700</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-accent-800)"></div><div class="sc-swatch__label">accent-800<code>--otto-accent-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-accent-100)"></div><div class="sc-swatch__label">accent-100<code>--otto-accent-100</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-destructive-200)"></div><div class="sc-swatch__label">destructive-200<code>--otto-destructive-200</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-success-200)"></div><div class="sc-swatch__label">success-200<code>--otto-success-200</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-destructive-800)"></div><div class="sc-swatch__label">destructive-800<code>--otto-destructive-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-success-800)"></div><div class="sc-swatch__label">success-800<code>--otto-success-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-warning-800)"></div><div class="sc-swatch__label">warning-800<code>--otto-warning-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-destructive-900)"></div><div class="sc-swatch__label">destructive-900<code>--otto-destructive-900</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-success-900)"></div><div class="sc-swatch__label">success-900<code>--otto-success-900</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-warning-900)"></div><div class="sc-swatch__label">warning-900<code>--otto-warning-900</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-accent-200)"></div><div class="sc-swatch__label">accent-200 (info)<code>--otto-accent-200</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-on-surface-800)"></div><div class="sc-swatch__label">on-surface-800 (tooltip)<code>--otto-on-surface-800</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-on-surface-200)"></div><div class="sc-swatch__label">on-surface-200<code>--otto-on-surface-200</code></div></div>
+      <div class="sc-swatch"><div class="sc-swatch__fill" style="background:var(--otto-border)"></div><div class="sc-swatch__label">border<code>--otto-border</code></div></div>
+    </div>
+
+    <h3 class="otto-subtitle" style="margin-top:8px">Type</h3>
+    <div>
+      <div class="sc-type-row"><span class="otto-display">Display</span><code>--otto-text-display</code></div>
+      <div class="sc-type-row"><span class="otto-headline">Headline</span><code>--otto-text-headline</code></div>
+      <div class="sc-type-row"><span class="otto-title">Title</span><code>--otto-text-title</code></div>
+      <div class="sc-type-row"><span class="otto-subtitle">Subtitle</span><code>--otto-text-subtitle</code></div>
+      <div class="sc-type-row"><span class="otto-body-lg">Body large</span><code>--otto-text-body-lg</code></div>
+      <div class="sc-type-row"><span style="font:var(--otto-text-body)">Body</span><code>--otto-text-body</code></div>
+      <div class="sc-type-row"><span class="otto-label">Label</span><code>--otto-text-label</code></div>
+      <div class="sc-type-row"><span class="otto-caption">Caption</span><code>--otto-text-caption</code></div>
+      <div class="sc-type-row"><span class="otto-overline">Overline</span><code>--otto-text-overline</code></div>
+    </div>
+
+    <h3 class="otto-subtitle" style="margin-top:8px">Space &amp; shape</h3>
+    <div class="sc-row">
+      <div class="sc-row" style="gap:6px"><div style="width:var(--otto-space-1);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-2);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-3);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-4);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-5);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-6);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-8);height:16px;background:var(--otto-accent-200)"></div><div style="width:var(--otto-space-10);height:16px;background:var(--otto-accent-200)"></div></div>
+      <span class="sc-note">space-1 → space-10 (4px base)</span>
+    </div>
+    <div class="sc-row">
+      <div style="width:48px;height:48px;border-radius:var(--otto-radius-sm);background:var(--otto-accent-800)"></div>
+      <div style="width:48px;height:48px;border-radius:var(--otto-radius);background:var(--otto-accent-800)"></div>
+      <div style="width:48px;height:48px;border-radius:var(--otto-radius-lg);background:var(--otto-accent-800)"></div>
+      <div style="width:48px;height:48px;border-radius:var(--otto-radius-pill);background:var(--otto-accent-800)"></div>
+      <span class="sc-note">radius-sm · radius · radius-lg · radius-pill</span>
+    </div>
+  </section>
+
+  <!-- ===== Buttons ===== -->
+  <section class="sc-section" id="buttons">
+    <div class="sc-section__head"><a class="sc-permalink" href="#buttons" aria-hidden="true">#</a><h2 class="otto-headline">Buttons</h2></div>
+    <span class="sc-note">Default size</span>
+    <div class="sc-row">
+      <button class="otto-btn otto-btn--primary">Primary</button>
+      <button class="otto-btn otto-btn--secondary">Secondary</button>
+      <button class="otto-btn otto-btn--destructive">Destructive</button>
+      <button class="otto-btn otto-btn--link">Link</button>
+      <button class="otto-btn otto-btn--ghost">Ghost</button>
+      <button class="otto-btn otto-btn--primary" disabled>Disabled</button>
+    </div>
+    <span class="sc-note">Small size</span>
+    <div class="sc-row">
+      <button class="otto-btn otto-btn--primary otto-btn--sm">Primary</button>
+      <button class="otto-btn otto-btn--secondary otto-btn--sm">Secondary</button>
+      <button class="otto-btn otto-btn--destructive otto-btn--sm">Destructive</button>
+      <button class="otto-btn otto-btn--link otto-btn--sm">Link</button>
+      <button class="otto-btn otto-btn--ghost otto-btn--sm">Ghost</button>
+    </div>
+    <span class="sc-note">Icon left / icon right (either DOM order — the button lays out either way)</span>
+    <div class="sc-row">
+      <button class="otto-btn otto-btn--primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New activity</button>
+      <button class="otto-btn otto-btn--secondary">Next<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <h3 class="otto-subtitle">Icon buttons</h3>
+    <div class="sc-row">
+      <button class="otto-icon-btn otto-icon-btn--primary" aria-label="New activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button class="otto-icon-btn otto-icon-btn--secondary" aria-label="More options"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+      <button class="otto-icon-btn otto-icon-btn--ghost" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+      <button class="otto-icon-btn otto-icon-btn--ghost" aria-label="Edit (disabled)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+    </div>
+  </section>
+
+  <!-- ===== Cards ===== -->
+  <section class="sc-section" id="cards">
+    <div class="sc-section__head"><a class="sc-permalink" href="#cards" aria-hidden="true">#</a><h2 class="otto-headline">Cards</h2></div>
+    <div class="sc-row">
+      <div class="otto-card sc-card-demo">
+        <div class="otto-card__header"><strong class="otto-subtitle">Card header</strong><span class="otto-badge otto-badge--primary" style="margin-left:auto">New</span></div>
+        <div class="otto-card__body">
+          <p class="otto-body-lg">Card body content area, padded and gapped per token.</p>
+          <div class="sc-row" style="gap:8px"><button class="otto-btn otto-btn--secondary otto-btn--sm">Cancel</button><button class="otto-btn otto-btn--primary otto-btn--sm">Save</button></div>
+        </div>
+      </div>
+    </div>
+    <h3 class="otto-subtitle">Contact strip</h3>
+    <div class="otto-card__header otto-contact" style="border-radius:var(--otto-radius);background:var(--otto-surface-700)">
+      <strong>Priya Natarajan</strong>
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7.5V9l8 4.7L20 9V7.5z"/></svg>priya.natarajan88@gmail.com</a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>(212) 555-0148</a>
+    </div>
+  </section>
+
+  <!-- ===== Fields ===== -->
+  <section class="sc-section" id="fields">
+    <div class="sc-section__head"><a class="sc-permalink" href="#fields" aria-hidden="true">#</a><h2 class="otto-headline">Fields</h2></div>
+    <div class="otto-field-row">
+      <div class="otto-field"><span class="otto-label">Activity type<span class="otto-required">*</span></span><input class="otto-input" placeholder="Candidate profile (CPF)"></div>
+      <div class="otto-field"><span class="otto-label">Date</span>
+        <div class="otto-select" role="button" tabindex="0">Nov 9, 2026 · 10:30 AM</div>
+      </div>
+    </div>
+    <div class="otto-field-row">
+      <div class="otto-field"><span class="otto-label">Notes</span><textarea class="otto-textarea" placeholder="Add context…"></textarea></div>
+      <div class="otto-field">
+        <span class="otto-label">Email</span>
+        <input class="otto-input" aria-invalid="true" value="not-an-email">
+        <span class="otto-field__error"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 21h22zm0 6 1 1v6l-1 1-1-1v-6zm0 10.5a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6"/></svg>Enter a valid email address.</span>
+      </div>
+    </div>
+    <div class="otto-field"><span class="otto-label">Current role</span><div class="otto-input otto-input--static">Firmware Engineer II, Halcyon Robotics</div><span class="otto-field__help">Pulled from the latest resume on file.</span></div>
+    <h3 class="otto-subtitle">Search</h3>
+    <div class="otto-search" style="max-width:360px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input placeholder="Search candidates…"></div>
+    <h3 class="otto-subtitle">Checkbox, radio, switch</h3>
+    <div class="sc-row">
+      <label class="otto-check"><input type="checkbox" checked><span>Email updates</span></label>
+      <label class="otto-check"><input type="checkbox"><span>SMS updates</span></label>
+      <label class="otto-check"><input type="radio" name="sc-radio" checked><span>Option A</span></label>
+      <label class="otto-check"><input type="radio" name="sc-radio"><span>Option B</span></label>
+      <label class="otto-switch"><input type="checkbox" checked><span>Enabled</span></label>
+    </div>
+  </section>
+
+  <!-- ===== Combobox ===== -->
+  <section class="sc-section" id="combobox">
+    <div class="sc-section__head"><a class="sc-permalink" href="#combobox" aria-hidden="true">#</a><h2 class="otto-headline">Combobox</h2></div>
+    <div class="otto-combobox" style="max-width:420px">
+      <div class="otto-combobox__control" tabindex="0" role="button" aria-label="Search requisitions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="otto-combobox__placeholder">Search by title, client or AM…</span>
+      </div>
+      <div class="otto-combobox__menu" role="group" aria-label="Requisitions" style="display:block;position:static;box-shadow:none;margin-top:4px">
+        <div class="otto-combobox__option" aria-selected="true">
+          <span class="otto-combobox__option-title">Controls Engineer, Warehouse Automation</span>
+          <span class="otto-combobox__option-sub">Planet Express</span>
+          <span class="otto-combobox__option-meta">AM: <span class="otto-avatar otto-avatar--xs">AK</span>Alex Kiaya</span>
+        </div>
+        <div class="otto-combobox__option">
+          <span class="otto-combobox__option-title">Embedded Systems Engineer, Fleet IoT</span>
+          <span class="otto-combobox__option-sub">Planet Express</span>
+        </div>
+        <span class="otto-combobox__footer">2 open requisitions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Chips, tags, pills, badges, counts ===== -->
+  <section class="sc-section" id="chips">
+    <div class="sc-section__head"><a class="sc-permalink" href="#chips" aria-hidden="true">#</a><h2 class="otto-headline">Chips, tags, pills, badges, counts</h2></div>
+    <div class="sc-row">
+      <span class="otto-chip">Controls Engineer<button class="otto-chip__remove" aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></span>
+      <span class="otto-chip otto-chip--lg">Large chip</span>
+    </div>
+    <div class="otto-tags">
+      <span class="otto-tag">C / C++</span><span class="otto-tag otto-tag--muted">ARM Cortex-M</span><span class="otto-tag otto-tag--navy">FreeRTOS</span><span class="otto-tag">Zephyr</span>
+    </div>
+    <div class="sc-row">
+      <span class="otto-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Remote</span>
+      <span class="otto-badge">Default</span>
+      <span class="otto-badge otto-badge--primary">Primary</span>
+      <span class="otto-badge otto-badge--navy">Navy</span>
+      <span class="otto-badge otto-badge--error">Error</span>
+      <span class="otto-badge otto-badge--exploration">Exploration</span>
+      <span class="otto-badge otto-badge--candidate">Candidate</span>
+      <span class="otto-badge otto-badge--final">Final</span>
+      <span class="otto-count">4</span>
+    </div>
+    <div class="sc-row">
+      <span class="otto-meta-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17"/></svg>Nov 9, 2026</span>
+      <span class="otto-loc">Red Oak, TX</span>
+    </div>
+  </section>
+
+  <!-- ===== Avatars ===== -->
+  <section class="sc-section" id="avatars">
+    <div class="sc-section__head"><a class="sc-permalink" href="#avatars" aria-hidden="true">#</a><h2 class="otto-headline">Avatars and stacks</h2></div>
+    <div class="sc-row">
+      <span class="otto-avatar otto-avatar--xs">AK</span>
+      <span class="otto-avatar otto-avatar--sm">MO</span>
+      <span class="otto-avatar">PN</span>
+      <span class="otto-avatar otto-avatar--lg otto-avatar--navy">DJ</span>
+    </div>
+    <ul class="otto-stack">
+      <li><span class="otto-avatar">AK</span></li>
+      <li><span class="otto-avatar otto-avatar--navy">DJ</span></li>
+      <li><span class="otto-avatar">EC</span></li>
+      <li><button class="otto-stack__more">+3</button></li>
+    </ul>
+  </section>
+
+  <!-- ===== Tabs & in-page nav ===== -->
+  <section class="sc-section" id="tabs">
+    <div class="sc-section__head"><a class="sc-permalink" href="#tabs" aria-hidden="true">#</a><h2 class="otto-headline">Tabs</h2></div>
+    <nav class="otto-tabs" aria-label="Example tabs">
+      <button class="otto-tab" role="tab" aria-selected="true">Overview</button>
+      <button class="otto-tab" role="tab" aria-selected="false">Activity</button>
+      <button class="otto-tab" role="tab" aria-selected="false">Contacts</button>
+      <button class="otto-tab" role="tab" aria-selected="false">Roles</button>
+    </nav>
+  </section>
+
+  <section class="sc-section" id="inpage-nav">
+    <div class="sc-section__head"><a class="sc-permalink" href="#inpage-nav" aria-hidden="true">#</a><h2 class="otto-headline">In-page navigation</h2></div>
+    <div class="sc-row" style="align-items:flex-start;gap:24px">
+      <nav class="otto-inpage-nav" aria-label="Form sections" style="background:var(--otto-surface-800)">
+        <a class="otto-inpage-nav__link" href="#" aria-current="true"><span class="otto-inpage-nav__label">Candidate Details</span></a>
+        <a class="otto-inpage-nav__link" href="#"><span class="otto-inpage-nav__label">Job Details</span></a>
+        <a class="otto-inpage-nav__link" href="#"><span class="otto-inpage-nav__label">Availability</span></a>
+      </nav>
+      <nav class="otto-inpage-nav otto-inpage-nav--collapsed" aria-label="Form sections" style="background:var(--otto-surface-800)">
+        <a class="otto-inpage-nav__link" href="#" aria-current="true" aria-label="Candidate Details" data-tooltip="Candidate Details"><span class="otto-inpage-nav__icon-box"><svg class="otto-inpage-nav__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6z"/></svg></span></a>
+        <a class="otto-inpage-nav__link" href="#" aria-label="Job Details" data-tooltip="Job Details"><span class="otto-inpage-nav__icon-box"><svg class="otto-inpage-nav__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4h6a2 2 0 0 1 2 2v1h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V6a2 2 0 0 1 2-2zm0 3h6V6H9z"/></svg></span></a>
+      </nav>
+      <span class="sc-note">Hover the collapsed rail for tooltips. Full guidance: <code>docs/components/in-page-navigation.md</code></span>
+    </div>
+  </section>
+
+  <!-- ===== Notices, banners, toasts ===== -->
+  <section class="sc-section" id="feedback">
+    <div class="sc-section__head"><a class="sc-permalink" href="#feedback" aria-hidden="true">#</a><h2 class="otto-headline">Notices, banners, toasts</h2></div>
+    <p class="otto-notice"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 3l1.6 4.4L16 9l-4.4 1.6L10 15l-1.6-4.4L4 9l4.4-1.6z"/></svg><span>Requisition summary and screening questions use AI. Check for accuracy.</span></p>
+    <p class="otto-notice otto-notice--boxed"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 5a1.3 1.3 0 1 1 0 2.6A1.3 1.3 0 0 1 12 7zm1.2 10h-2.4v-7h2.4z"/></svg><span>Boxed notice, for a contained inline hint.</span></p>
+    <div class="sc-row" style="flex-direction:column;align-items:stretch;gap:10px">
+      <div class="otto-banner otto-banner--success"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9z"/></svg><div><span class="otto-banner__title">Saved</span><span class="otto-muted">Candidate profile updated.</span></div></div>
+      <div class="otto-banner otto-banner--warning"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 21h22zm0 6 1 1v6l-1 1-1-1v-6z"/></svg><div><span class="otto-banner__title">Needs review</span><span class="otto-muted">Two fields were auto-filled from the resume.</span></div></div>
+      <div class="otto-banner otto-banner--error"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 21h22zm0 6 1 1v6l-1 1-1-1v-6z"/></svg><div><span class="otto-banner__title">Couldn't submit</span><span class="otto-muted">Check the highlighted fields.</span></div></div>
+    </div>
+    <div class="sc-row" style="flex-direction:column;align-items:stretch;gap:10px;max-width:420px">
+      <div class="otto-toast otto-toast--success"><svg class="otto-toast__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg><div><span class="otto-toast__header">Activity logged</span></div><button class="otto-icon-btn" aria-label="Dismiss" style="width:24px;height:24px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    </div>
+  </section>
+
+  <!-- ===== Panel sections, question lists ===== -->
+  <section class="sc-section" id="panels">
+    <div class="sc-section__head"><a class="sc-permalink" href="#panels" aria-hidden="true">#</a><h2 class="otto-headline">Panel sections and question lists</h2></div>
+    <div class="otto-card" style="max-width:420px">
+      <div class="otto-section">
+        <h3>Attached requisition</h3>
+        <span class="otto-chip otto-chip--lg" style="align-self:flex-start">Controls Engineer</span>
+        <span class="otto-meta"><span>AM: Alex Kiaya</span><span>HM: Danielle Johnson</span></span>
+      </div>
+      <div class="otto-section">
+        <h3>Screening questions</h3>
+        <ol class="otto-qlist">
+          <li><b>Experience:</b> "Which PLC platforms have you programmed?" <i>Listen for: Allen-Bradley or Siemens.</i></li>
+          <li><b>Schedule:</b> "Peak season needs evening coverage. Does that work?" <i>Listen for: a clear yes.</i></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Empty state ===== -->
+  <section class="sc-section" id="empty">
+    <div class="sc-section__head"><a class="sc-permalink" href="#empty" aria-hidden="true">#</a><h2 class="otto-headline">Empty state</h2></div>
+    <div class="otto-card"><div class="otto-empty">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <strong class="otto-empty__title">No results</strong>
+      <p class="otto-empty__text">Try removing a filter or widening the search.</p>
+      <button class="otto-btn otto-btn--secondary otto-btn--sm">Reset filters</button>
+    </div></div>
+  </section>
+
+  <!-- ===== Table & pagination ===== -->
+  <section class="sc-section" id="table">
+    <div class="sc-section__head"><a class="sc-permalink" href="#table" aria-hidden="true">#</a><h2 class="otto-headline">Table and pagination</h2></div>
+    <div class="otto-table-wrap">
+      <table class="otto-table">
+        <thead><tr><th>Candidate</th><th>Requisition</th><th>Stage</th><th class="is-num">Score</th></tr></thead>
+        <tbody>
+          <tr><td><a class="otto-table-link" href="#">Priya Natarajan</a></td><td>Controls Engineer</td><td><span class="otto-badge otto-badge--candidate">Candidate</span></td><td class="is-num">87</td></tr>
+          <tr><td><a class="otto-table-link" href="#">Jonah Fields</a></td><td>Embedded Systems Engineer</td><td><span class="otto-badge otto-badge--final">Final</span></td><td class="is-num">94</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <nav class="otto-pagination" aria-label="Pagination">
+      <span>12 results</span>
+      <div class="otto-pagination__pages">
+        <button aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button aria-current="page">1</button><button>2</button><button>3</button>
+        <button aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </nav>
+  </section>
+
+  <!-- ===== Menu, tooltip, expansion ===== -->
+  <section class="sc-section" id="menu">
+    <div class="sc-section__head"><a class="sc-permalink" href="#menu" aria-hidden="true">#</a><h2 class="otto-headline">Menu, tooltip, expansion panel</h2></div>
+    <div class="sc-row" style="align-items:flex-start">
+      <div class="otto-menu" style="position:static">
+        <button class="otto-menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>Edit</button>
+        <button class="otto-menu__item" data-active="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Move to stage<span class="otto-menu__check">✓</span></button>
+        <hr class="otto-menu__divider">
+        <button class="otto-menu__item otto-menu__item--destructive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m2 0-1 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 6"/></svg>Delete</button>
+      </div>
+      <span class="otto-tooltip" style="position:static">Tooltip label</span>
+    </div>
+    <details class="otto-expansion" style="max-width:420px">
+      <summary>What's this job really about?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="otto-expansion__body"><p class="otto-muted">This engineer keeps the conveyors, sorters and robots running.</p></div>
+    </details>
+  </section>
+
+  <!-- ===== Dialog & side sheet ===== -->
+  <section class="sc-section" id="dialog">
+    <div class="sc-section__head"><a class="sc-permalink" href="#dialog" aria-hidden="true">#</a><h2 class="otto-headline">Dialog and side sheet</h2></div>
+    <div class="sc-row" style="align-items:flex-start">
+      <div class="otto-dialog" style="position:static">
+        <div class="otto-dialog__header"><h2>Delete activity?</h2></div>
+        <div class="otto-dialog__body"><p>This can't be undone.</p></div>
+        <div class="otto-dialog__footer"><button class="otto-btn otto-btn--secondary">Cancel</button><button class="otto-btn otto-btn--destructive">Delete</button></div>
+      </div>
+      <div class="otto-sidesheet" style="width:300px;height:220px;position:static">
+        <div class="otto-sidesheet__header"><h2>Filters</h2></div>
+        <div class="otto-sidesheet__body"><p class="otto-muted">Side sheet content.</p></div>
+        <div class="otto-sidesheet__footer"><button class="otto-btn otto-btn--primary">Apply</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== App shell ===== -->
+  <section class="sc-section" id="app-shell">
+    <div class="sc-section__head"><a class="sc-permalink" href="#app-shell" aria-hidden="true">#</a><h2 class="otto-headline">App shell</h2></div>
+    <div style="border:1px solid var(--otto-border);border-radius:var(--otto-radius-lg);overflow:hidden">
+      <div class="otto-app" style="min-height:220px">
+        <nav class="otto-sidenav" aria-label="Main" style="position:static;height:auto">
+          <a class="otto-sidenav__item otto-sidenav__item--menu" href="#" aria-label="Collapse menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h12M3 12h9M3 18h12M21 8l-4 4 4 4"/></svg></a>
+          <a class="otto-sidenav__item" href="#" aria-label="Home" aria-current="page"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5z"/></svg></a>
+          <a class="otto-sidenav__item" href="#" aria-label="Candidates"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6z"/></svg></a>
+        </nav>
+        <div class="otto-app__main">
+          <header class="otto-topbar">
+            <button type="button" class="otto-user"><span class="otto-avatar otto-avatar--sm">MO</span>Marisol Ortega<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </header>
+          <div class="otto-page__main" style="padding:20px 24px">
+            <nav class="otto-breadcrumb" aria-label="Breadcrumb"><a href="#">Candidates</a><span aria-hidden="true">/</span><span aria-current="page">Priya Natarajan</span></nav>
+            <p class="otto-muted" style="margin-top:12px">Side navigation, top bar and breadcrumb, shown at a small scale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sc-section" id="examples">
+    <div class="sc-section__head"><a class="sc-permalink" href="#examples" aria-hidden="true">#</a><h2 class="otto-headline">Full example pages</h2></div>
+    <p class="otto-muted">Pages built only from the system, for real end-to-end composition: <a class="otto-link" href="/examples/ats-new-activity.html" target="_blank" rel="noopener">examples/ats-new-activity.html →</a></p>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* =====================================================================
+   OTTO DESIGN SYSTEM · TOKENS
+   Dark-first operational UI. Compact, clear hierarchy, restrained accent.
+   Tokens live on .otto-theme so the system only applies inside it.
+   Add class="otto-theme" to <html> or <body> to theme a whole app.
+   ===================================================================== */
+.otto-theme {
+  /* ---- Color: foundation ----
+     Progressive shades. Surface 900 is the page: titles and loose text sit on it. Surface 800 is the default
+     surface for cards and panels. Anything nested inside a card steps up to Surface 700 (card headers, wells, menus).
+     On-surface 800 is the default text and icon color; go down the scale to de-emphasize. */
+  --otto-surface-900: #00131F;               /* the page: app background, page titles and loose text */
+  --otto-surface-800: #03212E;               /* default surface: cards, panels, side navigation */
+  --otto-surface-700: #172E36;               /* nested in a card: headers, wells, menus */
+
+  --otto-on-surface-800: #FFFFFF;                  /* default text and icons, focus rings and focused field borders */
+  --otto-on-surface-700: rgba(255,255,255,0.80);   /* secondary text. Reserved: in the scale, no component uses it yet */
+  --otto-on-surface-600: rgba(255,255,255,0.72);   /* supporting text (AA on surface) */
+  --otto-on-surface-500: rgba(255,255,255,0.56);   /* field border hover, de-emphasized */
+  --otto-on-surface-400: rgba(255,255,255,0.32);   /* disabled text and icons */
+  --otto-on-surface-300: rgba(255,255,255,0.16);   /* hover, row separators, disabled fill */
+  --otto-on-surface-200: rgba(255,255,255,0.08);   /* field fill, subtle selected background */
+  --otto-border: var(--otto-on-surface-400);       /* borders and dividers, field borders */
+
+  /* ---- Color: brand ----
+     Yellow is the primary color. Accent steps support elevated and navigational surfaces.
+     800 is the default of each family; 900 is the step below it; 200 is a light/subtle step.
+     Text on primary and on inverse (tooltip) surfaces uses --otto-surface-900. */
+  --otto-primary-200: rgba(255,215,0,0.14);  /* primary tint: primary badge background */
+  --otto-primary-800: #FFD700;               /* primary action. Use sparingly */
+  --otto-primary-900: rgba(255,215,0,0.80);  /* primary action, hover */
+
+  --otto-accent-100: #8CC4E6;                /* icons and links on accent */
+  --otto-accent-200: #307AA6;                /* chips, counts, selection, active tab, info */
+  --otto-accent-300: rgba(48,122,166,0.80);  /* accent hover (selected chip, current page) */
+  --otto-accent-700: #234F69;                /* selected rows, avatars */
+  --otto-accent-800: rgba(35,79,105,0.80);   /* hover rows, tags, highlights */
+
+  /* ---- Color: feedback ----
+     Reserve destructive colors for critical feedback and irreversible actions.
+     800 is the default of each family; 900 is the step below it (80%, also used for containers).
+     200 is the light step: text, borders and icons on dark surfaces, where 800 is too dark to read. */
+  --otto-success-200: #9BE0AE;               /* text on a success-tinted surface, e.g. badge--final */
+  --otto-success-800: #30A677;
+  --otto-success-900: rgba(48,166,119,0.80);  /* reserved: in the scale, no component uses it yet */
+  --otto-warning-800: #EC8355;
+  --otto-warning-900: rgba(236,131,85,0.80);  /* reserved: in the scale, no component uses it yet */
+  --otto-destructive-200: #FF8A8A;           /* error text, invalid borders, toast/banner error tone */
+  --otto-destructive-800: #B00020;
+  --otto-destructive-900: rgba(176,0,32,0.80); /* destructive hover, error badge and containers */
+
+  /* ---- Type ---- */
+  --otto-font: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --otto-weight-regular: 400;
+  --otto-weight-medium: 500;
+  --otto-weight-semibold: 600;
+  --otto-text-display: var(--otto-weight-medium) 28px/1.2 var(--otto-font);
+  --otto-text-headline: var(--otto-weight-medium) 24px/1.25 var(--otto-font);
+  --otto-text-title: var(--otto-weight-regular) 20px/1.2 var(--otto-font);
+  --otto-text-subtitle: var(--otto-weight-semibold) 16px/1.4 var(--otto-font);
+  --otto-text-body-lg: var(--otto-weight-regular) 16px/1.5 var(--otto-font);
+  --otto-text-body: var(--otto-weight-regular) 14px/1.45 var(--otto-font);
+  --otto-text-label: var(--otto-weight-semibold) 13px/1.3 var(--otto-font);
+  --otto-text-caption: var(--otto-weight-regular) 12px/1.35 var(--otto-font);
+  --otto-text-overline: var(--otto-weight-semibold) 11px/1.2 var(--otto-font);
+
+  /* ---- Space (4px base) ---- */
+  --otto-space-1: 4px;
+  --otto-space-2: 8px;
+  --otto-space-3: 12px;
+  --otto-space-4: 16px;
+  --otto-space-5: 20px;
+  --otto-space-6: 24px;
+  --otto-space-8: 32px;
+  --otto-space-10: 40px;
+
+  /* ---- Shape ---- */
+  --otto-radius-sm: 4px;
+  --otto-radius: 8px;          /* controls, cards */
+  --otto-radius-lg: 12px;      /* outer frames */
+  --otto-radius-pill: 999px;
+
+  /* ---- Size ---- */
+  --otto-control-sm: 32px;
+  --otto-control: 40px;
+  --otto-control-lg: 44px;
+  --otto-sidenav: 64px;
+  --otto-sidenav-expanded: 232px;
+  --otto-topbar: 52px;
+  --otto-aside: 380px;
+
+  /* ---- Elevation & motion ---- */
+  --otto-shadow-menu: 0 16px 40px rgba(0,0,0,0.5);
+  --otto-shadow-card: 0 1px 2px rgba(0,0,0,0.3);
+  --otto-scrim: rgba(0,19,31,0.72);
+  --otto-ease: cubic-bezier(.2, .7, .3, 1);
+  --otto-duration: .12s;
+}

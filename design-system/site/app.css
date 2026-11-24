@@ -1,0 +1,78 @@
+/* Chrome for the audit/playground/showcase tool itself.
+   Deliberately NOT part of .otto-theme and not built from otto- classes: the
+   Playground tab injects live token overrides into its preview iframe only,
+   and this bar must stay legible no matter what values someone is trying out. */
+
+:root {
+  --chrome-bg: #0b0f12;
+  --chrome-surface: #15191d;
+  --chrome-border: #2a2f34;
+  --chrome-text: #f2f3f4;
+  --chrome-text-muted: #9aa2a9;
+  --chrome-accent: #4fb8e8;
+}
+
+* { box-sizing: border-box; }
+
+/* Monospace for displaying file paths, class names and token names in the
+   Audit report. This is tooling chrome, not a design-system component, so it
+   doesn't need (and shouldn't need) a otto- token of its own. */
+.mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+html, body { margin: 0; height: 100%; background: var(--chrome-bg); color: var(--chrome-text); font: 14px/1.4 -apple-system, "Segoe UI", system-ui, sans-serif; }
+body { display: flex; flex-direction: column; }
+
+.chrome-bar {
+  flex-shrink: 0; display: flex; align-items: center; gap: 20px; height: 52px; padding: 0 20px;
+  background: var(--chrome-surface); border-bottom: 1px solid var(--chrome-border);
+}
+.chrome-bar__brand { display: flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap; }
+.chrome-bar__brand .dot { width: 10px; height: 10px; border-radius: 50%; background: #FFD700; display: inline-block; }
+.chrome-tabs { display: flex; gap: 4px; }
+.chrome-tab {
+  appearance: none; border: 0; background: transparent; color: var(--chrome-text-muted); font: inherit; font-weight: 600;
+  padding: 8px 14px; border-radius: 6px; cursor: pointer;
+}
+.chrome-tab:hover { background: rgba(255,255,255,0.06); color: var(--chrome-text); }
+.chrome-tab[aria-selected="true"] { background: rgba(255,255,255,0.1); color: var(--chrome-text); }
+.chrome-bar__spacer { margin-left: auto; }
+.chrome-bar__link { color: var(--chrome-text-muted); text-decoration: none; font-size: 13px; }
+.chrome-bar__link:hover { color: var(--chrome-accent); }
+
+.chrome-panels { flex: 1; min-height: 0; position: relative; }
+.chrome-panel { position: absolute; inset: 0; display: none; }
+.chrome-panel[data-active="true"] { display: block; }
+
+.chrome-frame { width: 100%; height: 100%; border: 0; display: block; background: #00131F; }
+
+/* Playground layout: controls rail + live preview */
+.pg-layout { display: grid; grid-template-columns: 340px minmax(0, 1fr); height: 100%; }
+.pg-rail { overflow-y: auto; border-right: 1px solid var(--chrome-border); background: var(--chrome-surface); padding: 16px; display: flex; flex-direction: column; gap: 18px; }
+.pg-rail__actions { position: sticky; top: 0; display: flex; gap: 8px; padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px solid var(--chrome-border); background: var(--chrome-surface); z-index: 1; }
+.pg-btn {
+  flex: 1; appearance: none; border: 1px solid var(--chrome-border); background: #1d2328; color: var(--chrome-text);
+  font: inherit; font-weight: 600; padding: 8px 10px; border-radius: 6px; cursor: pointer;
+}
+.pg-btn:hover { background: #242b31; }
+.pg-btn--primary { background: #FFD700; color: #00131F; border-color: #FFD700; }
+.pg-btn--primary:hover { background: #ffe24d; }
+.pg-btn:disabled { opacity: .5; cursor: not-allowed; }
+.pg-status { font-size: 12px; color: var(--chrome-text-muted); min-height: 16px; }
+.pg-status[data-tone="ok"] { color: #7fd99a; }
+.pg-status[data-tone="error"] { color: #ff8a8a; }
+
+.pg-section summary { cursor: pointer; font-weight: 600; padding: 6px 0; list-style: none; display: flex; align-items: center; gap: 6px; }
+.pg-section summary::before { content: "▸"; font-size: 10px; color: var(--chrome-text-muted); transition: transform .12s ease; }
+.pg-section[open] summary::before { transform: rotate(90deg); }
+.pg-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+.pg-row label { flex: 1; min-width: 0; font-size: 12px; color: var(--chrome-text-muted); display: flex; flex-direction: column; gap: 2px; }
+.pg-row label span.name { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 11px; color: var(--chrome-text); }
+.pg-row input[type="color"] { width: 32px; height: 28px; border: 1px solid var(--chrome-border); border-radius: 4px; background: none; padding: 0; cursor: pointer; }
+.pg-row input[type="text"], .pg-row input[type="number"] {
+  width: 100%; background: #0f1215; border: 1px solid var(--chrome-border); color: var(--chrome-text);
+  font: 12px ui-monospace, monospace; padding: 5px 7px; border-radius: 4px;
+}
+.pg-row input.pg-changed { border-color: #FFD700; }
+.pg-swatch { width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--chrome-border); flex-shrink: 0; }
+
+/* Audit */
+.audit-wrap { height: 100%; overflow-y: auto; }

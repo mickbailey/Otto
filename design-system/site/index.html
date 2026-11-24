@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Otto Design System — Audit, Playground, Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <header class="chrome-bar">
+    <span class="chrome-bar__brand"><span class="dot" aria-hidden="true"></span>Otto Design System</span>
+    <nav class="chrome-tabs" role="tablist" aria-label="Site sections">
+      <button class="chrome-tab" role="tab" data-tab="showcase" aria-selected="true">Showcase</button>
+      <button class="chrome-tab" role="tab" data-tab="playground" aria-selected="false">Playground</button>
+      <button class="chrome-tab" role="tab" data-tab="audit" aria-selected="false">Audit</button>
+    </nav>
+    <span class="chrome-bar__spacer"></span>
+    <a class="chrome-bar__link" href="/README.md" target="_blank" rel="noopener">README</a>
+  </header>
+
+  <main class="chrome-panels">
+    <section class="chrome-panel" data-panel="showcase" data-active="true">
+      <iframe class="chrome-frame" id="showcase-frame" src="showcase.html" title="Component showcase"></iframe>
+    </section>
+
+    <section class="chrome-panel" data-panel="playground">
+      <div class="pg-layout">
+        <aside class="pg-rail" id="pg-rail" aria-label="Token controls">
+          <p class="pg-status">Loading tokens.css…</p>
+        </aside>
+        <iframe class="chrome-frame" id="playground-frame" src="showcase.html" title="Live token preview"></iframe>
+      </div>
+    </section>
+
+    <section class="chrome-panel" data-panel="audit">
+      <div class="audit-wrap otto-theme" id="audit-root">
+        <div style="max-width:1120px;margin:0 auto;padding:40px 24px 120px">
+          <p class="otto-muted">Running checks…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="playground.js"></script>
+  <script src="audit.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

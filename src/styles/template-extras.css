@@ -1,0 +1,6 @@
+/* Template-only additions that sit on top of the Otto design system (design-system/css).
+   Keep the design system files untouched; put app-specific additions here. */
+.otto-theme, :root {
+  --otto-font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;   /* branch panel and token names in docs only */
+}
+.otto-btn--lg { height: var(--otto-control-lg); }

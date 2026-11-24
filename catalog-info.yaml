@@ -1,0 +1,16 @@
+# Optional: registers this prototype in a Backstage software catalog (https://backstage.io).
+# `npm run init-app` fills in the name, description and owner. Delete this file if you don't use Backstage.
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: otto
+  title: Otto
+  description: Design-system-driven React template for deployable, high-fidelity product prototypes.
+  tags: [prototype, react, design-system]
+  annotations:
+    github.com/project-slug: YOUR-USERNAME/otto
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: website
+  lifecycle: experimental
+  owner: mick-bailey

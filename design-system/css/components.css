@@ -1,0 +1,594 @@
+/* =====================================================================
+   OTTO DESIGN SYSTEM · COMPONENTS
+   Needs tokens.css. Every class is prefixed otto- and only styles inside .otto-theme.
+   ===================================================================== */
+
+/* ---------- Base ---------- */
+.otto-theme {
+  container-type: inline-size;
+  font: var(--otto-text-body);
+  color: var(--otto-on-surface-800);
+  background: var(--otto-surface-900);
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  color-scheme: dark;   /* native date pickers, scrollbars and form controls match */
+}
+/* resets use :where() so they never outrank a component class */
+.otto-theme, .otto-theme :where(*:not(svg, svg *)), .otto-theme :where(*)::before, .otto-theme :where(*)::after { box-sizing: border-box; }
+.otto-theme :where(h1, h2, h3, h4, p, ul, ol, dl, dd, figure, fieldset) { margin: 0; padding: 0; }
+.otto-theme :where(ul[class], ol[class]) { list-style: none; }
+.otto-theme :where(button, input, select, textarea) { font: inherit; color: inherit; }
+.otto-theme :where(a) { color: inherit; text-decoration: none; }
+.otto-theme :where(svg) { flex-shrink: 0; }
+.otto-theme :focus-visible { outline: 2px solid var(--otto-on-surface-800); outline-offset: 2px; }
+.otto-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Type ---------- */
+.otto-display { font: var(--otto-text-display); }
+.otto-headline { font: var(--otto-text-headline); }
+.otto-title { font: var(--otto-text-title); }
+.otto-subtitle { font: var(--otto-text-subtitle); }
+.otto-body-lg { font: var(--otto-text-body-lg); }
+.otto-label { display: block; font: var(--otto-text-label); }
+.otto-caption { font: var(--otto-text-caption); }
+.otto-overline { font: var(--otto-text-overline); letter-spacing: .6px; text-transform: uppercase; }
+.otto-muted { color: var(--otto-on-surface-600); }
+
+/* ---------- App shell ---------- */
+/* Progressive shades: the page is Surface 900 (titles and loose text sit on it), cards and panels are 800,
+   and anything nested inside a card steps up to 700. */
+.otto-app { display: grid; grid-template-columns: var(--otto-sidenav) minmax(0, 1fr); min-height: 100%; }
+.otto-app__main { min-width: 0; display: flex; flex-direction: column; }
+.otto-sidenav { background: var(--otto-surface-800); display: flex; flex-direction: column; align-items: center; gap: var(--otto-space-2); padding: var(--otto-space-3) 0; }
+.otto-sidenav__item {
+  width: var(--otto-control-lg); height: var(--otto-control-lg); border-radius: var(--otto-radius);
+  display: inline-flex; align-items: center; justify-content: center; color: var(--otto-on-surface-800);
+  transition: background-color var(--otto-duration) ease;
+}
+.otto-sidenav__item svg { width: 24px; height: 24px; }
+.otto-sidenav__item:hover { background: var(--otto-on-surface-200); }
+.otto-sidenav__item[aria-current="page"] { background: var(--otto-on-surface-300); }
+.otto-sidenav__item--menu { margin-bottom: var(--otto-space-3); }
+/* Expandable rail: add .otto-app--nav-expanded to .otto-app; the toggle is a .otto-sidenav__item button */
+.otto-app { transition: grid-template-columns .2s var(--otto-ease); }
+.otto-app--nav-expanded { grid-template-columns: var(--otto-sidenav-expanded) minmax(0, 1fr); }
+.otto-sidenav__item { flex-shrink: 0; border: 0; background: transparent; cursor: pointer; text-decoration: none; }
+.otto-sidenav__label { display: none; font: var(--otto-text-body-lg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.otto-app--nav-expanded .otto-sidenav { align-items: stretch; padding: var(--otto-space-3); }
+.otto-app--nav-expanded .otto-sidenav__item { width: auto; justify-content: flex-start; gap: var(--otto-space-3); padding: 0 10px; }
+.otto-app--nav-expanded .otto-sidenav__label { display: inline; }
+/* Rail stays fixed in the viewport while the page scrolls; scrolls itself if it runs out of height */
+.otto-sidenav { position: sticky; top: 0; z-index: 20; height: 100vh; height: 100dvh; align-self: start; overflow-y: auto; overscroll-behavior: contain; }
+
+.otto-topbar {
+  height: var(--otto-topbar); flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; gap: var(--otto-space-3);
+  padding: 0 var(--otto-space-4); border-bottom: 1px solid var(--otto-border);
+}
+.otto-user {
+  display: inline-flex; align-items: center; gap: 10px; height: var(--otto-control); padding: 0 var(--otto-space-2) 0 var(--otto-space-1);
+  border: 0; border-radius: var(--otto-radius); background: transparent; cursor: pointer; font: var(--otto-text-body);
+}
+.otto-user:hover { background: var(--otto-on-surface-300); }
+.otto-user svg { width: 18px; height: 18px; }
+
+/* page with optional right panel */
+.otto-page { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr); }
+.otto-page--split { grid-template-columns: minmax(0, 1fr) var(--otto-aside); }
+.otto-page__main { min-width: 0; padding: 28px var(--otto-space-6) var(--otto-space-10); display: flex; flex-direction: column; gap: var(--otto-space-5); }
+.otto-page__aside { position: relative; min-width: 0; border-left: 1px solid var(--otto-border); }
+/* crop: the aside is cut at the height of the main column (screenshot-style) */
+.otto-page--cropped .otto-page__main { padding-bottom: 0; }
+.otto-page--cropped .otto-page__aside-inner { position: absolute; inset: 0; overflow: hidden; }
+.otto-page--cropped .otto-card { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.otto-page__head { display: flex; align-items: center; flex-wrap: wrap; gap: var(--otto-space-3) var(--otto-space-4); }
+.otto-page__head > :first-child { margin-right: auto; }
+
+.otto-breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: var(--otto-on-surface-600); }
+.otto-breadcrumb a { border-radius: var(--otto-radius-sm); }
+.otto-breadcrumb a:hover { color: var(--otto-on-surface-800); text-decoration: underline; }
+.otto-breadcrumb svg { width: 18px; height: 18px; margin-right: var(--otto-space-1); }
+
+/* ---------- Buttons ---------- */
+.otto-btn {
+  height: var(--otto-control); padding: 0 var(--otto-space-5); border-radius: var(--otto-radius); border: 1px solid transparent;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--otto-space-2);
+  font: var(--otto-text-body); font-weight: var(--otto-weight-semibold); white-space: nowrap; cursor: pointer;
+  transition: background-color var(--otto-duration) ease, border-color var(--otto-duration) ease;
+}
+.otto-btn svg { width: 16px; height: 16px; }
+.otto-btn--sm { height: var(--otto-control-sm); padding: 0 var(--otto-space-3); font-size: 12px; }
+.otto-btn--primary { background: var(--otto-primary-800); color: var(--otto-surface-900); }
+.otto-btn--primary:hover:not(:disabled) { background: var(--otto-primary-900); }
+.otto-btn--secondary { background: transparent; border-color: var(--otto-on-surface-800); color: var(--otto-on-surface-800); }
+.otto-btn--secondary:hover:not(:disabled) { background: var(--otto-on-surface-300); }
+.otto-btn--ghost { background: var(--otto-on-surface-200); color: var(--otto-on-surface-800); }
+.otto-btn--ghost:hover:not(:disabled) { background: var(--otto-accent-800); }
+.otto-btn--destructive { background: var(--otto-destructive-800); color: var(--otto-on-surface-800); }
+.otto-btn--link { background: transparent; color: var(--otto-accent-100); padding: 0 var(--otto-space-2); }
+.otto-btn--link:hover:not(:disabled) { background: var(--otto-on-surface-300); color: var(--otto-on-surface-800); }
+.otto-btn--block { width: 100%; }
+.otto-btn--destructive:hover:not(:disabled) { background: var(--otto-destructive-900); }
+.otto-btn:disabled { background: var(--otto-on-surface-300); border-color: transparent; color: var(--otto-on-surface-400); cursor: not-allowed; }
+.otto-btn--secondary:disabled { background: transparent; border-color: var(--otto-border); }
+.otto-icon-btn {
+  width: var(--otto-control); height: var(--otto-control); padding: 0; border: 1px solid transparent; border-radius: var(--otto-radius);
+  background: transparent; color: var(--otto-on-surface-800); display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background-color var(--otto-duration) ease, border-color var(--otto-duration) ease;
+}
+.otto-icon-btn svg { width: 20px; height: 20px; }
+.otto-icon-btn--ghost:hover, .otto-icon-btn--secondary:hover { background: var(--otto-on-surface-300); }
+.otto-icon-btn--secondary { border-color: var(--otto-on-surface-800); }
+.otto-icon-btn--primary { background: var(--otto-primary-800); color: var(--otto-surface-900); }
+.otto-icon-btn--primary:hover:not(:disabled) { background: var(--otto-primary-900); }
+.otto-icon-btn:disabled { background: var(--otto-on-surface-300); border-color: transparent; color: var(--otto-on-surface-400); cursor: not-allowed; pointer-events: none; }
+
+/* ---------- Card ---------- */
+.otto-card { background: var(--otto-surface-800); border-radius: var(--otto-radius); box-shadow: var(--otto-shadow-card); }
+.otto-card__header { display: flex; align-items: center; flex-wrap: wrap; gap: 10px var(--otto-space-5); padding: var(--otto-space-4) var(--otto-space-5); background: var(--otto-surface-700); border-radius: var(--otto-radius) var(--otto-radius) 0 0; }
+.otto-card__body { padding: var(--otto-space-6) var(--otto-space-5) 28px; display: flex; flex-direction: column; gap: var(--otto-space-5); }
+
+/* contact strip (name | email | phone | link) */
+.otto-contact strong { font: var(--otto-text-subtitle); font-size: 15px; padding-right: var(--otto-space-5); border-right: 1px solid var(--otto-border); }
+.otto-contact a { display: inline-flex; align-items: center; gap: var(--otto-space-2); border-radius: var(--otto-radius-sm); }
+.otto-contact a:hover { text-decoration: underline; }
+.otto-contact svg { width: 18px; height: 18px; }
+
+/* ---------- Fields ---------- */
+.otto-field > .otto-label { margin-bottom: 6px; }
+.otto-field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--otto-space-4); }
+.otto-input, .otto-select, .otto-textarea {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: var(--otto-control-lg); padding: 6px var(--otto-space-3);
+  border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200);
+  color: var(--otto-on-surface-800); font: var(--otto-text-body); transition: border-color var(--otto-duration) ease;
+}
+.otto-input:hover, .otto-select:hover, .otto-textarea:hover { border-color: var(--otto-on-surface-500); }
+.otto-input:disabled, .otto-select:disabled, .otto-textarea:disabled { background: var(--otto-on-surface-300); border-color: transparent; color: var(--otto-on-surface-400); cursor: not-allowed; }
+.otto-input:focus, .otto-select:focus, .otto-textarea:focus { outline: none; border-color: var(--otto-on-surface-800); }
+.otto-input::placeholder, .otto-textarea::placeholder, .otto-input .otto-placeholder { color: var(--otto-on-surface-600); }
+.otto-input > svg { width: 18px; height: 18px; margin-left: auto; color: var(--otto-on-surface-600); }
+.otto-select { appearance: none; -webkit-appearance: none; padding-right: var(--otto-space-10); cursor: pointer;
+  background: var(--otto-on-surface-200) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 12px center / 18px no-repeat; }
+.otto-select option { background: var(--otto-surface-800); }
+.otto-textarea { min-height: 112px; padding: 10px var(--otto-space-3); resize: vertical; line-height: 1.5; }
+/* display-only fields in mockups: a div styled like the control */
+.otto-input--static { cursor: default; }
+.otto-input--static:hover { border-color: var(--otto-border); }
+
+/* search */
+.otto-search { display: flex; align-items: center; gap: 10px; min-height: var(--otto-control-lg); padding: 0 var(--otto-space-3); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200); }
+.otto-search:focus-within { border-color: var(--otto-on-surface-800); }
+.otto-search svg { width: 20px; height: 20px; }
+.otto-search input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; }
+.otto-search input::placeholder { color: var(--otto-on-surface-600); }
+
+/* ---------- Combobox (CSS only: opens while focused) ---------- */
+.otto-combobox { position: relative; }
+.otto-combobox__control {
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--otto-space-2); min-height: 56px; padding: var(--otto-space-2) var(--otto-space-3);
+  border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200); cursor: text; outline: none;
+  transition: border-color var(--otto-duration) ease;
+}
+.otto-combobox__control:hover { border-color: var(--otto-on-surface-500); }
+.otto-combobox:focus-within .otto-combobox__control { border-color: var(--otto-on-surface-800); }
+.otto-combobox__control > svg { width: 24px; height: 24px; margin-right: var(--otto-space-1); }
+.otto-combobox__placeholder { flex: 1 1 120px; min-width: 0; line-height: 36px; color: var(--otto-on-surface-600); font-size: 16px; }
+.otto-combobox__menu {
+  display: none; position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 4px);
+  background: var(--otto-surface-700); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); overflow: hidden; box-shadow: var(--otto-shadow-menu);
+}
+.otto-combobox:focus-within .otto-combobox__menu, .otto-combobox--open .otto-combobox__menu { display: block; }
+.otto-combobox__option { display: block; padding: 14px var(--otto-space-5); cursor: pointer; outline: none; transition: background-color var(--otto-duration) ease; }
+.otto-combobox__option + .otto-combobox__option { border-top: 1px solid var(--otto-on-surface-300); }
+.otto-combobox__option:hover, .otto-combobox__option:focus-visible { background: var(--otto-accent-800); }
+.otto-combobox__option[aria-selected="true"] { background: var(--otto-accent-700); }
+.otto-combobox__option-title { display: block; font: var(--otto-text-body-lg); }
+.otto-combobox__option-sub { display: block; margin-top: 2px; font-size: 15px; color: var(--otto-on-surface-600); }
+.otto-combobox__option-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 6px; font-size: 13px; }
+.otto-combobox__footer { display: block; padding: var(--otto-space-3) var(--otto-space-5); border-top: 1px solid var(--otto-on-surface-300); font: var(--otto-text-caption); font-size: 13px; color: var(--otto-on-surface-600); }
+
+/* ---------- Chips, tags, badges, counts ---------- */
+.otto-chip { display: inline-flex; align-items: center; gap: 6px; min-height: var(--otto-control-sm); padding: 0 6px 0 var(--otto-space-3); border-radius: 6px; background: var(--otto-accent-200); font: var(--otto-text-body); white-space: nowrap; }
+.otto-chip--lg { padding: 6px var(--otto-space-3); font: var(--otto-text-body-lg); }
+.otto-chip__remove { width: 24px; height: 24px; border: 0; padding: 0; border-radius: var(--otto-radius-sm); background: transparent; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.otto-chip__remove:hover { background: var(--otto-on-surface-300); }
+.otto-chip__remove svg { width: 16px; height: 16px; }
+.otto-tag { height: 26px; padding: 0 10px; border-radius: var(--otto-radius-pill); border: 1px solid var(--otto-border); background: var(--otto-accent-800); font: var(--otto-text-caption); display: inline-flex; align-items: center; white-space: nowrap; }
+.otto-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.otto-pill { height: 24px; padding: 0 10px; border-radius: var(--otto-radius-pill); border: 1px solid var(--otto-border); font: var(--otto-text-caption); font-size: 13px; display: inline-flex; align-items: center; gap: var(--otto-space-1); white-space: nowrap; }
+.otto-pill svg { width: 12px; height: 12px; }
+/* Interactive pill (filter / choice chip). Hover steps to the next token: neutral hover, or accent 300 when selected. */
+.otto-pill--toggle { height: var(--otto-control-sm); padding: 0 var(--otto-space-3); font-weight: var(--otto-weight-semibold); background: transparent; color: var(--otto-on-surface-800); cursor: pointer; }
+.otto-pill--toggle:hover { background: var(--otto-on-surface-300); }
+.otto-pill--toggle[aria-pressed="true"] { background: var(--otto-accent-200); border-color: transparent; }
+.otto-pill--toggle[aria-pressed="true"]:hover { background: var(--otto-accent-300); }
+.otto-badge { height: 20px; padding: 0 var(--otto-space-2); border-radius: var(--otto-radius-pill); border: 1px solid var(--otto-border); font: var(--otto-text-overline); font-size: 10px; display: inline-flex; align-items: center; white-space: nowrap; }
+.otto-badge--primary { background: var(--otto-primary-200); border-color: transparent; color: var(--otto-primary-800); }
+.otto-badge--navy { background: var(--otto-accent-700); border-color: transparent; }
+.otto-badge--error { background: var(--otto-destructive-900); border-color: transparent; color: var(--otto-on-surface-800); }
+.otto-count { min-width: 20px; height: 20px; padding: 0 6px; border-radius: var(--otto-radius-pill); background: var(--otto-accent-200); font: var(--otto-text-overline); display: inline-flex; align-items: center; justify-content: center; }
+
+/* ---------- Avatars ---------- */
+.otto-avatar { --size: 32px; width: var(--size); height: var(--size); border-radius: 50%; background: var(--otto-border); display: inline-flex; align-items: center; justify-content: center; font-size: calc(var(--size) * .38); font-weight: var(--otto-weight-semibold); flex-shrink: 0; overflow: hidden; position: relative; }
+.otto-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.otto-avatar--xs { --size: 24px; }
+.otto-avatar--sm { --size: 28px; }
+.otto-avatar--lg { --size: 56px; }
+.otto-avatar--navy { background: var(--otto-accent-700); }
+.otto-avatar-stack { display: flex; align-items: center; }
+.otto-avatar-stack > * { box-shadow: 0 0 0 2px var(--otto-surface-900); transition: transform var(--otto-duration) var(--otto-ease); }
+.otto-avatar-stack > * + * { margin-left: -4px; }
+.otto-avatar-stack > *:hover { transform: translateY(-2px); position: relative; z-index: 1; }
+
+/* ---------- Tabs ---------- */
+.otto-tabs { display: flex; gap: var(--otto-space-2); border-bottom: 1px solid var(--otto-border); overflow-x: auto; scrollbar-width: none; }
+.otto-tab { position: relative; padding: var(--otto-space-3) var(--otto-space-4); border: 0; background: transparent; font: var(--otto-text-body); font-size: 15px; white-space: nowrap; cursor: pointer; }
+.otto-tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: transparent; }
+.otto-tab:hover::after { background: var(--otto-border); }
+.otto-tab[aria-selected="true"], .otto-tab[aria-current="page"] { font-weight: var(--otto-weight-semibold); }
+.otto-tab[aria-selected="true"]::after, .otto-tab[aria-current="page"]::after { background: var(--otto-accent-200); }
+
+/* ---------- In-page navigation (jump links to sections of one long page) ----------
+   <nav class="otto-inpage-nav" aria-label="Form sections"> <a class="otto-inpage-nav__link" href="#id" aria-current="true">…</a> </nav>
+   Add --collapsed for icon-only, --alternate for a leading-edge rail. Sticky is the layout's job, not the component's. */
+.otto-inpage-nav { display: flex; flex-direction: column; align-items: stretch; width: 208px; padding: var(--otto-space-2) 0; border-radius: var(--otto-radius); }
+.otto-inpage-nav__link {
+  position: relative; display: flex; align-items: center; gap: var(--otto-space-2); height: 48px; padding: var(--otto-space-3);
+  font: var(--otto-text-label); font-size: 14px; line-height: 20px; color: var(--otto-on-surface-800);
+  transition: background-color var(--otto-duration) ease;
+}
+.otto-inpage-nav__link::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 2px; background: var(--otto-border); }
+.otto-inpage-nav__link:hover { background: var(--otto-on-surface-300); }
+.otto-inpage-nav__link[aria-current="true"]::after { width: 4px; background: var(--otto-accent-200); }
+.otto-inpage-nav__link[aria-current="true"] { background: var(--otto-on-surface-200); }
+.otto-inpage-nav__icon { width: 20px; height: 20px; color: var(--otto-accent-100); }
+.otto-inpage-nav__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.otto-inpage-nav__status { width: 20px; height: 20px; margin-left: auto; color: var(--otto-on-surface-600); }
+.otto-inpage-nav--alternate .otto-inpage-nav__link::after { right: auto; left: 0; }
+.otto-inpage-nav--collapsed { width: 48px; }
+.otto-inpage-nav--collapsed .otto-inpage-nav__link { justify-content: center; padding: 0; }
+.otto-inpage-nav--collapsed .otto-inpage-nav__link:hover { background: transparent; }
+.otto-inpage-nav--collapsed .otto-inpage-nav__link:hover .otto-inpage-nav__icon-box { background: var(--otto-on-surface-300); }
+.otto-inpage-nav__icon-box { width: 36px; height: 36px; border-radius: var(--otto-radius); display: inline-flex; align-items: center; justify-content: center; }
+.otto-inpage-nav--collapsed .otto-inpage-nav__label, .otto-inpage-nav--collapsed .otto-inpage-nav__status { display: none; }
+/* CSS tooltip for the collapsed variant: <a … aria-label="References" data-tooltip="References"> */
+.otto-inpage-nav--collapsed [data-tooltip]::before {
+  content: attr(data-tooltip); position: absolute; left: calc(100% + 8px); top: 50%; transform: translateY(-50%);
+  min-height: 24px; max-width: 200px; padding: 4px 8px; border-radius: var(--otto-radius-sm);
+  background: var(--otto-on-surface-800); color: var(--otto-surface-900); font: var(--otto-text-label); font-size: 12px; line-height: 16px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity var(--otto-duration) ease; z-index: 10;
+}
+.otto-inpage-nav--collapsed [data-tooltip]:hover::before, .otto-inpage-nav--collapsed [data-tooltip]:focus-visible::before { opacity: 1; }
+.otto-section-target { scroll-margin-top: 72px; }   /* put on each section so a persistent header doesn't cover its heading */
+
+/* ---------- Notice (AI disclaimer, info) ---------- */
+.otto-notice { display: flex; gap: 10px; padding: var(--otto-space-5) var(--otto-space-6); font: var(--otto-text-caption); font-size: 13px; color: var(--otto-on-surface-600); }
+.otto-notice svg { width: 20px; height: 20px; color: var(--otto-on-surface-800); }
+.otto-notice--boxed { padding: var(--otto-space-3) var(--otto-space-4); border-radius: var(--otto-radius); background: var(--otto-accent-800); border: 1px solid var(--otto-accent-700); color: var(--otto-on-surface-800); }
+
+/* ---------- Panel sections (right-hand side) ---------- */
+.otto-section { padding: var(--otto-space-5) var(--otto-space-6); display: flex; flex-direction: column; gap: var(--otto-space-2); }
+.otto-section + .otto-section, .otto-notice + .otto-section { border-top: 1px solid var(--otto-border); }
+.otto-section h3 { font: var(--otto-text-label); }
+.otto-section p { line-height: 1.6; }
+.otto-section h3 ~ h3 { margin-top: var(--otto-space-3); }
+.otto-meta { display: flex; flex-wrap: wrap; gap: var(--otto-space-1) var(--otto-space-6); font-size: 13px; color: var(--otto-on-surface-600); }
+
+/* numbered question list with "listen for" hints */
+.otto-qlist { list-style: decimal; padding-left: var(--otto-space-5); display: flex; flex-direction: column; gap: 14px; line-height: 1.55; }
+.otto-qlist b { font-weight: var(--otto-weight-semibold); }
+.otto-qlist i { display: block; margin-top: 6px; color: var(--otto-on-surface-600); }
+
+/* ---------- Empty state ---------- */
+.otto-empty { display: flex; flex-direction: column; align-items: center; gap: var(--otto-space-2); padding: var(--otto-space-10) var(--otto-space-4); text-align: center; }
+.otto-empty__title { font: var(--otto-text-title); }
+.otto-empty__text { color: var(--otto-on-surface-600); max-width: 360px; }
+
+/* ---------- Table ---------- */
+.otto-table-wrap { overflow-x: auto; }
+.otto-table { width: 100%; border-collapse: collapse; }
+.otto-table th { height: 36px; padding: 0 var(--otto-space-2); text-align: left; white-space: nowrap; font: var(--otto-text-label); font-size: 12px; color: var(--otto-on-surface-600); border-bottom: 1px solid var(--otto-border); }
+.otto-table td { height: 56px; padding: 0 var(--otto-space-2); border-bottom: 1px solid var(--otto-on-surface-300); white-space: nowrap; }
+.otto-table .is-num { text-align: right; font-variant-numeric: tabular-nums; }
+.otto-table tbody tr:hover { background: var(--otto-on-surface-300); }
+
+/* ---------- Fields: help and errors ---------- */
+.otto-field__help { margin-top: 6px; font: var(--otto-text-caption); color: var(--otto-on-surface-600); }
+.otto-field__error { margin-top: 6px; font: var(--otto-text-caption); color: var(--otto-destructive-200); display: flex; gap: 6px; align-items: flex-start; }
+.otto-field__error svg { width: 16px; height: 16px; }
+.otto-required { color: var(--otto-destructive-200); margin-left: 2px; }
+.otto-input[aria-invalid="true"], .otto-select[aria-invalid="true"], .otto-textarea[aria-invalid="true"] { border-color: var(--otto-destructive-200); }
+
+/* ---------- Checkboxes, radios and switches ---------- */
+.otto-check { display: inline-flex; align-items: flex-start; gap: 10px; min-height: 24px; cursor: pointer; }
+.otto-check input {
+  appearance: none; -webkit-appearance: none; margin: 2px 0 0; width: 20px; height: 20px; flex-shrink: 0;
+  border: 1px solid var(--otto-border); border-radius: 6px; background: transparent; display: grid; place-content: center; cursor: pointer;
+  transition: background-color var(--otto-duration) ease, border-color var(--otto-duration) ease;
+}
+.otto-check input[type="radio"] { border-radius: 50%; }
+.otto-check input::after { content: ""; width: 10px; height: 6px; border: 2px solid var(--otto-surface-900); border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
+.otto-check input[type="radio"]::after { width: 8px; height: 8px; border: 0; border-radius: 50%; background: var(--otto-surface-900); transform: none; }
+.otto-check input:checked { background: var(--otto-primary-800); border-color: var(--otto-primary-800); }
+.otto-check input:checked::after { opacity: 1; }
+.otto-check input:disabled { border-color: var(--otto-on-surface-400); cursor: not-allowed; }
+.otto-check input:disabled:checked { background: var(--otto-on-surface-300); border-color: var(--otto-on-surface-400); }
+.otto-check input:disabled + span { color: var(--otto-on-surface-400); cursor: not-allowed; }
+.otto-switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+.otto-switch input { appearance: none; -webkit-appearance: none; margin: 0; width: 40px; height: 24px; border-radius: 12px; background: var(--otto-border); position: relative; cursor: pointer; transition: background-color var(--otto-duration) ease; }
+.otto-switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--otto-on-surface-800); transition: transform .16s var(--otto-ease); }
+.otto-switch input:checked { background: var(--otto-accent-200); }
+.otto-switch input:checked::after { transform: translateX(16px); }
+
+/* ---------- Menu (popover list of actions or choices) ---------- */
+.otto-menu {
+  position: absolute; z-index: 40; min-width: 200px; max-height: 320px; overflow-y: auto; padding: 6px 0;
+  background: var(--otto-surface-700); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); box-shadow: var(--otto-shadow-menu);
+}
+.otto-menu__item {
+  display: flex; align-items: center; gap: var(--otto-space-3); width: 100%; padding: 10px var(--otto-space-4);
+  border: 0; background: transparent; color: var(--otto-on-surface-800); font: var(--otto-text-body); text-align: left; cursor: pointer;
+}
+.otto-menu--condensed .otto-menu__item { padding: 6px var(--otto-space-3); }
+.otto-menu__item:hover, .otto-menu__item:focus-visible, .otto-menu__item[data-active="true"] { background: var(--otto-on-surface-300); outline: none; }
+.otto-menu__item svg { width: 18px; height: 18px; color: var(--otto-on-surface-600); }
+.otto-menu__item-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.otto-menu__item-secondary { font: var(--otto-text-caption); color: var(--otto-on-surface-600); }
+.otto-menu__check { margin-left: auto; color: var(--otto-accent-100) !important; }
+.otto-menu__item--destructive, .otto-menu__item--destructive svg { color: var(--otto-destructive-200); }
+.otto-menu__item[aria-disabled="true"], .otto-menu__item[aria-disabled="true"] svg { color: var(--otto-on-surface-400); cursor: not-allowed; }
+.otto-menu__divider { height: 1px; margin: 6px 0; background: var(--otto-border); border: 0; }
+
+/* ---------- Tooltip ---------- */
+.otto-tooltip {
+  position: absolute; z-index: 60; max-width: 240px; padding: 4px 8px; border-radius: var(--otto-radius-sm);
+  background: var(--otto-on-surface-800); color: var(--otto-surface-900); font: var(--otto-text-label); font-size: 12px; line-height: 16px; pointer-events: none;
+}
+
+/* ---------- Toast ---------- */
+.otto-toast-region { position: fixed; z-index: 90; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; flex-direction: column; gap: var(--otto-space-2); width: min(480px, calc(100vw - 32px)); }
+.otto-toast {
+  display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: var(--otto-space-3); align-items: start; padding: var(--otto-space-3) var(--otto-space-3) var(--otto-space-3) var(--otto-space-4);
+  border-radius: var(--otto-radius); background: var(--otto-surface-700); border: 1px solid var(--otto-border); border-left: 4px solid var(--otto-tone, var(--otto-accent-200));
+  box-shadow: var(--otto-shadow-menu); animation: otto-toast-in .22s var(--otto-ease);
+}
+.otto-toast--success { --otto-tone: var(--otto-success-800); }
+.otto-toast--info { --otto-tone: var(--otto-accent-200); }
+.otto-toast--warning { --otto-tone: var(--otto-warning-800); }
+.otto-toast--error { --otto-tone: var(--otto-destructive-200); }
+.otto-toast__icon { width: 20px; height: 20px; color: var(--otto-tone, var(--otto-accent-200)); margin-top: 1px; }
+.otto-toast__header { display: block; font: var(--otto-text-label); font-size: 14px; }
+.otto-toast__action { margin-left: var(--otto-space-2); font-weight: var(--otto-weight-semibold); text-decoration: underline; color: var(--otto-accent-100); background: none; border: 0; padding: 0; cursor: pointer; }
+@keyframes otto-toast-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Banner (inline, persistent) ---------- */
+.otto-banner { display: flex; gap: var(--otto-space-3); align-items: flex-start; padding: var(--otto-space-3) var(--otto-space-4); border-radius: var(--otto-radius); background: var(--otto-surface-700); border: 1px solid var(--otto-border); border-left: 4px solid var(--otto-tone, var(--otto-accent-200)); }
+.otto-banner--success { --otto-tone: var(--otto-success-800); }
+.otto-banner--info { --otto-tone: var(--otto-accent-200); }
+.otto-banner--warning { --otto-tone: var(--otto-warning-800); }
+.otto-banner--error { --otto-tone: var(--otto-destructive-200); }
+.otto-banner > svg { width: 20px; height: 20px; color: var(--otto-tone, var(--otto-accent-200)); margin-top: 1px; }
+.otto-banner__title { display: block; font: var(--otto-text-label); font-size: 14px; }
+
+/* ---------- Dialog and side sheet ---------- */
+.otto-scrim { position: fixed; inset: 0; z-index: 80; background: var(--otto-scrim); display: flex; align-items: center; justify-content: center; padding: var(--otto-space-6); }
+.otto-dialog { width: 100%; max-width: 480px; max-height: calc(100dvh - 48px); display: flex; flex-direction: column; background: var(--otto-surface-800); border: 1px solid var(--otto-border); border-radius: var(--otto-radius-lg); box-shadow: var(--otto-shadow-menu); }
+.otto-dialog__header, .otto-sidesheet__header { display: flex; align-items: center; gap: var(--otto-space-3); padding: var(--otto-space-4) var(--otto-space-4) var(--otto-space-4) var(--otto-space-6); border-bottom: 1px solid var(--otto-border); }
+.otto-dialog__header h2, .otto-sidesheet__header h2 { font: var(--otto-text-title); margin-right: auto; }
+.otto-dialog__body, .otto-sidesheet__body { padding: var(--otto-space-6); overflow-y: auto; display: flex; flex-direction: column; gap: var(--otto-space-4); }
+.otto-dialog__footer, .otto-sidesheet__footer { display: flex; justify-content: flex-end; gap: var(--otto-space-2); padding: var(--otto-space-4) var(--otto-space-6); border-top: 1px solid var(--otto-border); }
+.otto-scrim--sheet { justify-content: flex-end; align-items: stretch; padding: 0; }
+.otto-sidesheet { width: min(480px, 100vw); height: 100%; display: flex; flex-direction: column; background: var(--otto-surface-800); border-left: 1px solid var(--otto-border); animation: otto-sheet-in .24s var(--otto-ease); }
+.otto-sidesheet__body { flex: 1; }
+@keyframes otto-sheet-in { from { transform: translateX(32px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- Expansion panel ---------- */
+.otto-expansion { background: var(--otto-surface-800); border-radius: var(--otto-radius); }
+.otto-expansion > summary { list-style: none; display: flex; align-items: center; gap: var(--otto-space-3); min-height: 56px; padding: 0 var(--otto-space-5); cursor: pointer; font: var(--otto-text-subtitle); border-radius: var(--otto-radius); }
+.otto-expansion > summary::-webkit-details-marker { display: none; }
+.otto-expansion > summary:hover { background: var(--otto-on-surface-300); }
+.otto-expansion > summary svg { margin-left: auto; width: 20px; height: 20px; transition: transform var(--otto-duration) ease; }
+.otto-expansion[open] > summary svg { transform: rotate(180deg); }
+.otto-expansion__body { padding: var(--otto-space-2) var(--otto-space-5) var(--otto-space-6); display: flex; flex-direction: column; gap: var(--otto-space-4); }
+
+/* ---------- Pagination ---------- */
+.otto-pagination { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--otto-space-3); font: var(--otto-text-caption); color: var(--otto-on-surface-600); }
+.otto-pagination__pages { display: flex; gap: var(--otto-space-1); }
+.otto-pagination button { min-width: var(--otto-control-sm); height: var(--otto-control-sm); padding: 0 var(--otto-space-2); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: transparent; color: var(--otto-on-surface-800); font: var(--otto-text-caption); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.otto-pagination button:hover:not(:disabled) { background: var(--otto-on-surface-300); }
+.otto-pagination button[aria-current="page"] { background: var(--otto-accent-200); border-color: transparent; font-weight: var(--otto-weight-semibold); }
+.otto-pagination button[aria-current="page"]:hover:not(:disabled) { background: var(--otto-accent-300); }
+.otto-pagination button:disabled { color: var(--otto-on-surface-400); cursor: not-allowed; }
+.otto-pagination svg { width: 16px; height: 16px; }
+
+/* ---------- Badges: branch status pills (UX branching) ---------- */
+.otto-badge--exploration { background: var(--otto-on-surface-300); border-color: transparent; }
+.otto-badge--candidate { background: var(--otto-accent-200); border-color: transparent; }
+.otto-badge--final { background: var(--otto-on-surface-300); border-color: transparent; color: var(--otto-success-200); }
+
+/* ---------- Record card (list item with details + activity feed), e.g. the candidate list ---------- */
+.otto-record { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "head head" "main feed"; gap: 12px 16px; padding: 16px 24px 16px; border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-surface-800); }
+.otto-record__head { grid-area: head; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+.otto-record__name { font: 400 24px/1.25 var(--otto-font); margin-right: 4px; }
+.otto-record__actions { margin-left: auto; display: flex; gap: 8px; }
+.otto-record__main { grid-area: main; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.otto-record__feed { grid-area: feed; min-width: 0; height: 228px; overflow-y: auto; padding: 8px; border-radius: var(--otto-radius); background: var(--otto-on-surface-200); display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; }
+.otto-meta-pill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border: 1px solid var(--otto-border); border-radius: 6px; font: var(--otto-text-caption); font-size: 13px; white-space: nowrap; }
+.otto-meta-pill svg { width: 16px; height: 16px; }
+.otto-detail-list { display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.otto-detail-list li { display: flex; align-items: center; gap: 12px; min-width: 0; overflow-wrap: anywhere; }
+.otto-detail-list svg { width: 20px; height: 20px; flex-shrink: 0; }
+.otto-tag--muted { background: var(--otto-on-surface-300); }
+.otto-tag--navy { background: var(--otto-accent-700); border-color: var(--otto-border); }
+.otto-feed-entry { display: flex; flex-direction: column; gap: 8px; }
+.otto-feed-entry__head { display: flex; align-items: center; gap: 8px; font: var(--otto-text-body-lg); font-size: 15px; }
+.otto-feed-entry__head svg { width: 20px; height: 20px; }
+.otto-feed-entry__time { margin-left: auto; white-space: nowrap; }
+.otto-feed-entry__thread { margin-left: 9px; padding-left: 18px; border-left: 1px solid var(--otto-border); display: flex; flex-direction: column; gap: 8px; }
+.otto-feed-entry__by { display: flex; align-items: center; gap: 8px; font-weight: var(--otto-weight-semibold); font-size: 15px; }
+.otto-link { color: var(--otto-on-surface-800); font-weight: var(--otto-weight-semibold); text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-size: 15px; align-self: flex-start; }
+.otto-link:hover { color: var(--otto-accent-100); }
+@container (max-width: 820px) {
+  .otto-record { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "main" "feed"; padding: 16px; }
+  .otto-record__actions { margin-left: 0; width: 100%; }
+}
+
+/* ---------- Responsive (width of the .otto-theme container) ---------- */
+@container (max-width: 1000px) {
+  .otto-page--split { grid-template-columns: minmax(0, 1fr); }
+  .otto-page__aside { border-left: 0; border-top: 1px solid var(--otto-border); }
+  .otto-page--cropped .otto-page__aside-inner { position: static; }
+  .otto-page--cropped .otto-page__main { padding-bottom: var(--otto-space-6); }
+  .otto-page--cropped .otto-card { border-radius: var(--otto-radius); }
+}
+@container (max-width: 640px) {
+  .otto-app { grid-template-columns: minmax(0, 1fr); }
+  .otto-sidenav { flex-direction: row; justify-content: space-around; padding: 6px var(--otto-space-2); }
+  .otto-sidenav__item--menu { margin-bottom: 0; }
+  .otto-sidenav { height: auto; overflow: visible; }
+  .otto-app--nav-expanded { grid-template-columns: minmax(0, 1fr); }
+  .otto-app--nav-expanded .otto-sidenav { flex-direction: row; align-items: center; padding: 6px var(--otto-space-2); }
+  .otto-app--nav-expanded .otto-sidenav__item { width: var(--otto-control-lg); justify-content: center; padding: 0; }
+  .otto-app--nav-expanded .otto-sidenav__label, .otto-sidenav__item--menu { display: none; }
+  .otto-page__main { padding: var(--otto-space-5) var(--otto-space-4) var(--otto-space-8); }
+  .otto-page__head .otto-display { width: 100%; font-size: 24px; }
+  .otto-field-row { grid-template-columns: minmax(0, 1fr); }
+  .otto-contact strong { border-right: 0; padding-right: 0; width: 100%; }
+  .otto-section, .otto-notice { padding-left: var(--otto-space-4); padding-right: var(--otto-space-4); }
+  .otto-chip { white-space: normal; padding-top: var(--otto-space-1); padding-bottom: var(--otto-space-1); max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .otto-theme * { transition: none !important; animation: none !important; }
+}
+
+/* Candidate list filter row: three search fields, then Filters and Reset */
+.otto-cand-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto auto; align-items: center; gap: 16px; }
+@container (max-width: 820px) { .otto-cand-filters { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 767px) { .otto-cand-filters { grid-template-columns: 1fr 1fr; } .otto-cand-filters > .otto-search { grid-column: 1 / -1; } }
+
+/* ---------- Note composer: one line until focused, then grows with type menu + Post ---------- */
+.otto-note { flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: transparent; transition: border-color .15s var(--otto-ease); }
+.otto-note:hover { border-color: var(--otto-border); }
+.otto-note--open, .otto-note--open:hover { border-color: var(--otto-on-surface-800); padding-bottom: 8px; }
+.otto-note__input { display: block; width: 100%; min-height: 38px; resize: none; border: 0; outline: none; background: transparent; color: var(--otto-on-surface-800); font: var(--otto-text-body-lg); font-size: 15px; line-height: 22px; padding: 8px 12px; }
+.otto-note--open .otto-note__input { min-height: 64px; }
+.otto-note__input::placeholder { color: var(--otto-on-surface-600); }
+.otto-note__bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 8px; }
+.otto-note__type { display: inline-flex; align-items: center; gap: 16px; height: 32px; padding: 0 8px 0 16px; border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: transparent; color: var(--otto-on-surface-800); font: var(--otto-text-label); font-size: 14px; font-weight: 600; cursor: pointer; }
+.otto-note__type:hover { background: var(--otto-on-surface-200); }
+.otto-note__type:focus-visible { outline: 2px solid var(--otto-on-surface-800); outline-offset: 1px; }
+.otto-note__post { height: 32px; min-width: 48px; padding: 0 12px; }
+/* The outline moves to the whole composer (white border), so the textarea drops its own ring */
+.otto-theme .otto-note__input:focus, .otto-theme .otto-note__input:focus-visible { outline: none; }
+.otto-note__post { font-size: 15px; }
+
+/* Text-field focus ring sits on the field's outer border (2px primary), never on the bare input inside it */
+.otto-theme .otto-search input:focus, .otto-theme .otto-search input:focus-visible,
+.otto-theme .otto-combobox__control input:focus, .otto-theme .otto-combobox__control input:focus-visible { outline: none; }
+.otto-search:focus-within, .otto-combobox:focus-within .otto-combobox__control { border-color: var(--otto-on-surface-800) !important; box-shadow: 0 0 0 1px var(--otto-on-surface-800); }
+.otto-input:focus, .otto-select:focus, .otto-textarea:focus { box-shadow: 0 0 0 1px var(--otto-on-surface-800); }
+
+/* ================= Account page (hero with map, sticky team bar, actions aside, tabbed card) ================= */
+.otto-acct { container-type: inline-size; position: relative; padding-bottom: var(--otto-space-10); }
+.otto-phero { display: grid; grid-template-columns: minmax(0, 1fr) 200px; column-gap: 24px; }
+.otto-phero__main { padding: 24px 0 0 24px; min-width: 0; }
+.otto-hero__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.otto-hero__title { font: var(--otto-text-display); line-height: 1.2; margin: 0; }
+.otto-hero__rule { height: 0; margin: 16px 0; border: 0; border-top: 1px solid var(--otto-border); }
+.otto-phero__map { position: relative; margin: 0; min-height: 176px; overflow: hidden; background: var(--otto-surface-900); }
+.otto-mapimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.otto-hero__pin { position: absolute; left: 50%; top: 50%; width: 22px; height: 30px; transform: translate(-50%, -100%); pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+.otto-phero__nomap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--otto-on-surface-600); font: var(--otto-text-caption); background: var(--otto-on-surface-200); }
+.otto-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
+.otto-facts dt { font-size: 12px; font-weight: 600; line-height: 1.3; }
+.otto-facts dd { margin: 2px 0 0; line-height: 1.3; font-size: 14px; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+
+.otto-stack { display: flex; align-items: center; margin: 12px 0 0; padding: 0; list-style: none; }
+.otto-stack li { position: relative; display: flex; }
+.otto-stack li + li { margin-left: -4px; }
+.otto-stack .otto-avatar { box-shadow: 0 0 0 2px var(--otto-surface-900); transition: transform .12s var(--otto-ease); }
+.otto-stack li:hover { z-index: 2; }
+.otto-stack li:hover .otto-avatar { transform: translateY(-2px); }
+.otto-stack__more { width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: var(--otto-surface-800); color: var(--otto-on-surface-800); box-shadow: 0 0 0 2px var(--otto-surface-900); font: inherit; font-size: 13px; cursor: pointer; }
+.otto-stack__more:hover { background: var(--otto-accent-800); }
+
+.otto-pbody { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; padding: 24px; align-items: start; }
+.otto-aside { display: flex; flex-direction: column; gap: 16px; }
+.otto-actions { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.otto-actions h2 { margin: 0 0 4px; font-size: 12px; font-weight: 600; }
+.otto-roles-col { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.otto-rolecard { padding: 12px; border: 1px solid transparent; transition: border-color .12s var(--otto-ease); }
+.otto-rolecard:hover { border-color: var(--otto-border); }
+.otto-rolecard h3 { margin: 0; font-size: 12px; font-weight: 600; }
+.otto-rolecard__person { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.otto-rolecard__person .otto-avatar { --size: 40px; }
+.otto-rolecard__name { font-size: 14px; }
+.otto-rolecard__phone { font-size: 12px; margin-top: 2px; }
+.otto-origin { margin-top: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.otto-origin p { margin: 0; font-size: 12px; line-height: 1.5; }
+.otto-origin__av { position: relative; display: inline-flex; }
+.otto-origin__av .otto-avatar { --size: 48px; }
+.otto-origin__badge { position: absolute; right: -6px; bottom: -4px; width: 22px; height: 22px; border-radius: 50%; background: var(--otto-on-surface-800); color: var(--otto-surface-900); box-shadow: 0 0 0 2px var(--otto-surface-800); display: inline-flex; align-items: center; justify-content: center; }
+.otto-tabs-card { padding: 16px; min-width: 0; }
+
+/* Activity feed */
+.otto-day { margin-top: 8px; }
+.otto-day__label { margin: 0 0 4px; font-size: 12px; font-weight: 400; letter-spacing: .3px; text-transform: uppercase; color: var(--otto-on-surface-600); }
+.otto-act { margin: 0 -8px; padding: 0; list-style: none; }
+.otto-act__item { position: relative; display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 8px; padding: 8px 8px 16px; border-radius: var(--otto-radius); transition: background-color .12s var(--otto-ease); }
+.otto-act__item:hover { background: var(--otto-on-surface-300); }
+.otto-act__item::before { content: ""; position: absolute; left: 23px; top: 48px; bottom: 4px; width: 1px; background: var(--otto-border); }
+.otto-act__head { min-height: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 14px; }
+.otto-act__head strong { font-weight: 600; }
+.otto-act__head .otto-muted { color: var(--otto-on-surface-600); }
+.otto-act__time { margin-left: auto; color: var(--otto-on-surface-600); white-space: nowrap; }
+.otto-act__body { margin: 4px 0 0; font-size: 14px; line-height: 21px; }
+.otto-act mark { background: var(--otto-primary-200); color: var(--otto-on-surface-800); border-radius: 2px; padding: 0 1px; }
+.otto-loc { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: var(--otto-radius-pill); border: 1px solid var(--otto-border); font-size: 12px; white-space: nowrap; }
+
+/* Contacts tab */
+.otto-people { margin: 0; padding: 0; list-style: none; }
+.otto-person-row { display: grid; grid-template-columns: 32px minmax(0, 1.4fr) minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 8px; border-bottom: 1px solid var(--otto-on-surface-300); border-radius: 6px; font-size: 14px; }
+.otto-person-row:hover { background: var(--otto-on-surface-300); }
+.otto-person-row small { display: block; font-size: 12px; color: var(--otto-on-surface-600); }
+
+/* Sticky team bar: the name and team collapse into a bar once the title scrolls away */
+.otto-sticky { position: sticky; top: 0; height: 0; z-index: 30; }
+.otto-sticky__bar { position: absolute; left: 0; right: 0; top: 0; height: 64px; display: flex; align-items: center; gap: 24px; padding: 0 24px; background: var(--otto-surface-900); border-bottom: 1px solid var(--otto-border); box-shadow: 0 8px 24px rgba(0,0,0,.45); transform: translateY(-100%); opacity: 0; visibility: hidden; transition: transform .28s ease, opacity .2s ease, visibility 0s linear .28s; }
+.otto-sticky.is-on .otto-sticky__bar { transform: none; opacity: 1; visibility: visible; transition: transform .28s ease, opacity .2s ease; }
+.otto-sticky__name { min-width: 0; font-size: 22px; font-weight: 500; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.otto-sticky .otto-stack { margin-top: 0; flex-shrink: 0; }
+.otto-sticky__actions { margin-left: auto; flex-shrink: 0; display: flex; gap: 8px; }
+.otto-sticky__menu-btn { gap: 8px; }
+.otto-sticky__menu-btn svg { transition: transform .15s ease; }
+.otto-sticky__menu-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.otto-sticky .otto-stack li { opacity: 0; transform: translateY(8px) scale(.7); transition: opacity .2s ease, transform .45s cubic-bezier(.3, 1.6, .5, 1); transition-delay: calc(var(--i, 0) * 40ms + 100ms); }
+.otto-sticky.is-on .otto-stack li { opacity: 1; transform: none; }
+
+@container (max-width: 1100px) {
+  .otto-pbody { grid-template-columns: minmax(0, 1fr); }
+  .otto-aside { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; }
+  .otto-roles-col { margin-top: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .otto-origin { grid-column: 1 / -1; margin-top: 0; }
+}
+@container (max-width: 760px) {
+  .otto-phero { grid-template-columns: minmax(0, 1fr); }
+  .otto-phero__main { padding-right: 24px; }
+  .otto-phero__map { margin: 16px 24px 0; height: 180px; border-radius: var(--otto-radius); }
+  .otto-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .otto-aside, .otto-roles-col { grid-template-columns: minmax(0, 1fr); }
+  .otto-person-row { grid-template-columns: 32px minmax(0, 1fr) auto; }
+  .otto-person-row > .otto-muted { display: none; }
+}
+@container (max-width: 600px) {
+  .otto-phero__main, .otto-pbody { padding-left: 16px; padding-right: 16px; }
+  .otto-phero__map { display: none; }
+  .otto-act__time { margin-left: 0; width: 100%; order: 5; font-size: 12px; }
+  .otto-sticky__bar { height: 56px; gap: 12px; padding: 0 16px; }
+  .otto-sticky__name { font-size: 18px; }
+  .otto-sticky .otto-stack, .otto-sticky__actions > .otto-btn--ghost { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .otto-sticky__bar, .otto-sticky .otto-stack li { transition: none; } }
+
+/* Record link inside a table cell (account name, etc.) */
+.otto-table-link { color: var(--otto-on-surface-800); font-weight: var(--otto-weight-semibold); text-decoration: none; }
+.otto-table-link:hover { text-decoration: underline; text-underline-offset: 3px; }
