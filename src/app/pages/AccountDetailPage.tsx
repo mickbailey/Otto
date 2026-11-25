@@ -31,6 +31,7 @@ function TeamStack({ people, total, id }: { people: string[]; total: number; id?
   );
 }
 
+// otto-audit-ignore-file hardcoded-color the US flag is an illustration, its colors are not UI colors
 function FlagUS() {
   return (
     <svg width="16" height="11" viewBox="0 0 26 18" role="img" aria-label="United States">

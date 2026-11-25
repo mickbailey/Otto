@@ -142,7 +142,7 @@ export function SettingsPage() {
             <tbody>
               {PERMISSIONS.map((p) => (
                 <tr key={p}>
-                  <th scope="row" style={{ fontWeight: 400, color: "var(--otto-on-surface-800)", fontSize: 14, height: 48 }}>{PERMISSION_LABELS[p]}<span className="otto-caption otto-muted" style={{ display: "block", fontFamily: "var(--otto-font-mono)" }}>{p}</span></th>
+                  <th scope="row" style={{ fontWeight: 400, color: "var(--otto-on-surface-800)", fontSize: 14, height: 48 }}>{PERMISSION_LABELS[p]}<span className="otto-caption otto-muted" style={{ display: "block" }}>{p}</span></th>
                   {ROLES.map((r) => (
                     <td key={r} style={{ textAlign: "center" }}>
                       {ROLE_PERMISSIONS[r].includes(p)
