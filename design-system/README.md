@@ -9,7 +9,7 @@ Dark-first design system for operational recruiting and CRM tools. Compact, clea
 | `css/tokens.css` | Color, type, space, shape, size and motion tokens, scoped to `.otto-theme` (put the class on `<html>` so the page background covers the whole canvas, including below the fold) |
 | `css/components.css` | Components, all prefixed `otto-` |
 | `dist/otto.embed.css` | Build for embedding in another site: adds an isolation reset so the host page can't restyle components |
-| `docs/foundations/` | Foundations: [Color](docs/foundations/color.md) — the token scale and the rules for using it |
+| `docs/foundations/` | Foundations: [Color](docs/foundations/color.md) (the token scale and how to use it) and [Shape and spacing](docs/foundations/shape-and-spacing.md) (concentric radius, the 4px grid, gaps) |
 | `docs/components/` | Usage guidelines per component (when to use, anatomy, behavior, accessibility, content) |
 | `docs/styling/` | Styling and implementation per component (dimensions, tokens, states, markup) |
 | `examples/` | Pages built only from the system |
@@ -48,6 +48,7 @@ Then open `http://127.0.0.1:8420/site/`. Three tabs, all reading the real files 
 
 - **Tokens, not hard-coded values.** Every color, size and space comes from `tokens.css`, so the whole system can be re-skinned in one place. No hex, no `color-mix`, no opacity tints: use a step that exists.
 - **Primary yellow is rare.** One primary action per area. Accent (`--otto-accent-200`) carries selection, chips, counts and the active tab.
+- **Concentric corners.** Surfaces (cards, panels, dialogs) are `--otto-radius-lg` (16px); everything inside a surface is `--otto-radius` (8px). Layered elements then nest cleanly.
 - **Progressive shades.** The page is `--otto-surface-900`, cards and panels are `--otto-surface-800`, and anything nested in a card is `--otto-surface-700`. Every color family treats 800 as its default. See [Color](docs/foundations/color.md).
 - **Sentence case** for UI text; Title Case only for page titles, section titles, tab labels and in-page navigation labels.
 - **A + icon never pairs with "Add".** Use "New …" (New activity, New contact).

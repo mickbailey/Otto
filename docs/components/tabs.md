@@ -35,9 +35,9 @@ Don't use it:
 | Part | Description |
 | --- | --- |
 | Tab list | Row with a bottom border; scrolls horizontally when tight |
-| Tab | 15px label, Title Case |
-| Indicator | 3px `--otto-accent-200` bar under the selected tab |
-| Panel | Content for the selected tab |
+| Tab | 14px label, Title Case. 8px side padding, 8px below the label, none above, so the label sits flush with the surface's 16px padding |
+| Indicator | 4px `--otto-accent-200` bar under the selected tab |
+| Panel | Content for the selected tab. It starts 16px below the tab bar (added by `Tabs`), so content inside shouldn't add its own top padding |
 
 ## Behavior
 

@@ -76,8 +76,8 @@
 
   /* ---- Shape ---- */
   --otto-radius-sm: 4px;
-  --otto-radius: 8px;          /* controls, cards */
-  --otto-radius-lg: 12px;      /* outer frames */
+  --otto-radius: 8px;          /* everything inside a surface: controls, rows, nested panels */
+  --otto-radius-lg: 16px;      /* surfaces: cards, panels, dialogs. Nested corners step down to 8 so they layer concentrically */
   --otto-radius-pill: 999px;
 
   /* ---- Size ---- */

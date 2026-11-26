@@ -35,6 +35,7 @@ npm run typecheck                   # types must pass too
 | `banned-dependency` | error | UI, icon or toast library in package.json |
 | `contrast`, `non-otto-class` | error | With `--system`: failing color pairs, unprefixed component classes |
 | `opacity-tint`, `raw-type-size`, `raw-radius`, `off-grid-spacing` | warning | Raw values instead of tokens or the 4px grid |
+| `between-16-and-24`, `inside-surface-spacing` | warning | Spacing of 17-23px; with `--system`, surface padding or gaps over 16px. Inside a surface 16 or less, outside 24 or more |
 | `page-shell`, `page-header`, `one-primary` | warning | Page missing the shell or header; several primary buttons in a file |
 | `vague-label`, `title-case-ui-text`, `friendly-error`, `exclamation-in-error` | warning | Copy rules |
 | `clickable-div`, `img-alt`, `autofocus` | warning | Accessibility smells |

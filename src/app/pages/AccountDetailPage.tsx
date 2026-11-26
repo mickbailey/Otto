@@ -4,6 +4,7 @@ import {
   Avatar, Button, DataTable, EmptyState, Icon, MenuTrigger, Tabs, Tag, useToast, type Column,
 } from "../../components/ds";
 import { ACCOUNTS, CONTACTS, REQUISITIONS, accountDetail, type AccountActivity, type Requisition } from "../../data/sample";
+import { useRole } from "../../roles/roles";
 import mapImage from "../../assets/planet-express-map.jpg";
 
 /* ---------- Small pieces ---------- */
@@ -66,12 +67,12 @@ function ActivityTab({ days, total }: { days: Array<{ day: string; items: Accoun
   const toggle = (v: string) => setFilters((cur) => (cur.includes(v) ? cur.filter((x) => x !== v) : [...cur, v]));
 
   return (
-    <div className="flex flex-col gap-3" style={{ paddingTop: 16 }}>
+    <div className="flex flex-col gap-4">
       <div className="flex gap-3 items-center">
         <div className="otto-search" style={{ flex: 1, minHeight: 40, minWidth: 0 }}>
           <Icon name="search" size={18} />
           <label htmlFor="acct-act-search" className="otto-sr">Search activity</label>
-          <input id="acct-act-search" type="search" placeholder="Search activity..." value={q} onChange={(e) => setQ(e.target.value)} autoComplete="off" />
+          <input id="acct-act-search" type="search" placeholder="Search activity by keyword or participant..." value={q} onChange={(e) => setQ(e.target.value)} autoComplete="off" />
         </div>
         <MenuTrigger
           label="Filter activity"
@@ -86,18 +87,19 @@ function ActivityTab({ days, total }: { days: Array<{ day: string; items: Accoun
             </button>
           )}
         />
+        <Button variant="secondary" disabled={!filtered} onClick={() => { setQ(""); setFilters([]); }}>Reset</Button>
       </div>
       {filters.length > 0 && (
         <div className="flex flex-wrap gap-2 items-center" aria-label="Active filters">
           {filters.map((f) => (
             <Tag key={f} onRemove={() => toggle(f)} removeLabel={`Remove filter ${f.slice(2)}`}>{f.startsWith("m:") ? "Manager" : "Office"}: {f.slice(2)}</Tag>
           ))}
-          <button type="button" className="otto-btn otto-btn--link otto-btn--sm" onClick={() => setFilters([])}>Clear filters</button>
         </div>
       )}
-      <p className="otto-muted" aria-live="polite" style={{ fontSize: 14 }}>Showing {count} of {filtered ? count : total}</p>
+      <div>
+      <p className="otto-feedcount" aria-live="polite">Showing {count} of {filtered ? count : total}</p>
       {shown.length === 0 ? (
-        <EmptyState title="No activity matches" text="Try a different search, or clear your filters." action={<Button onClick={() => { setQ(""); setFilters([]); }}>Clear filters</Button>} />
+        <EmptyState title="No activity matches" text="Try a different search, or clear your filters." action={<Button onClick={() => { setQ(""); setFilters([]); }}>Reset</Button>} />
       ) : (
         shown.map((d) => (
           <section key={d.day} className="otto-day" aria-label={d.day}>
@@ -120,6 +122,7 @@ function ActivityTab({ days, total }: { days: Array<{ day: string; items: Accoun
           </section>
         ))
       )}
+      </div>
     </div>
   );
 }
@@ -135,6 +138,7 @@ export function AccountDetailPage() {
 function AccountView({ id }: { id: string }) {
   const navigate = useNavigate();
   const toast = useToast();
+  const { can } = useRole();
   const account = ACCOUNTS.find((a) => a.id === id);
   const [tab, setTab] = useState("activity");
   const [stuck, setStuck] = useState(false);
@@ -167,6 +171,7 @@ function AccountView({ id }: { id: string }) {
   ];
   const runAction = (v: string) => {
     if (v === "requisition") navigate("/requisitions");
+    else if (v === "activity") toast.info("Logging activity from an account isn't part of this prototype yet");
     else toast.info("Agreements open in the contracts system");
   };
 
@@ -178,7 +183,7 @@ function AccountView({ id }: { id: string }) {
     { key: "subs", header: "Submittals", numeric: true, sortValue: (r) => r.submittals, render: (r) => r.submittals },
   ];
 
-  const panel = (children: ReactNode) => <div style={{ paddingTop: 16 }}>{children}</div>;
+  const panel = (children: ReactNode) => <div>{children}</div>;
 
   return (
     <div className="otto-acct">
@@ -207,15 +212,14 @@ function AccountView({ id }: { id: string }) {
         <div className="otto-phero__main">
           <div className="otto-hero__top">
             <h1 className="otto-hero__title" id="acct-title" ref={titleRef}>{account.name}</h1>
-            <Button variant="ghost" onClick={() => toast.info("Editing is not part of this prototype")}>Edit</Button>
           </div>
           <TeamStack people={d.team} total={d.teamSize} />
           <hr className="otto-hero__rule" />
           <dl className="otto-facts">
             <div><dt>Industry</dt><dd>{account.industry}</dd></div>
             <div><dt>Headquarters</dt><dd><FlagUS />{account.hq}</dd></div>
-            <div><dt>YTD revenue</dt><dd>{d.revenue}</dd></div>
             <div><dt>Contractors</dt><dd>{d.contractors}</dd></div>
+            <div><dt>YTD revenue</dt><dd>{d.revenue}</dd></div>
           </dl>
         </div>
         <figure className="otto-phero__map">
@@ -234,7 +238,15 @@ function AccountView({ id }: { id: string }) {
         <aside className="otto-aside" aria-label="Account actions and team">
           <div className="otto-card otto-actions">
             <h2>Account actions</h2>
+            {can("activity.create") && <Button variant="primary" icon="add" block onClick={() => runAction("activity")}>New activity</Button>}
             {actions.map((a) => <Button key={a.value} variant="secondary" block onClick={() => runAction(a.value)}>{a.label}</Button>)}
+          </div>
+          <div className="otto-card otto-origin">
+            <span className="otto-origin__av">
+              <Avatar name={d.origin.by} size="lg" navy />
+              <span className="otto-origin__badge" aria-hidden="true"><Icon name="pickaxe" size={14} /></span>
+            </span>
+            <p>Account broken in {d.origin.year}<br />by {d.origin.by}</p>
           </div>
           <div className="otto-roles-col">
             {d.roles.map((r) => (
@@ -246,13 +258,6 @@ function AccountView({ id }: { id: string }) {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="otto-card otto-origin">
-            <span className="otto-origin__av">
-              <Avatar name={d.origin.by} size="lg" navy />
-              <span className="otto-origin__badge" aria-hidden="true"><Icon name="pickaxe" size={14} /></span>
-            </span>
-            <p>Account broken in {d.origin.year}<br />by {d.origin.by}</p>
           </div>
         </aside>
 

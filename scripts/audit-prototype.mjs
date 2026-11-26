@@ -161,6 +161,9 @@ function auditFile(file) {
         const tag = tagAt(code, lines, i, "<IconButton");
         if (tag && !/\blabel=/.test(tag)) report("icon-button-label", "error", i, "IconButton without a label. Icon-only controls need an accessible name.");
       }
+      for (const m of line.matchAll(/\b(?:margin|padding|gap|rowGap|columnGap)\w*\s*:\s*['"]?(\d+)/g)) {
+        if (+m[1] > 16 && +m[1] < 24) report("between-16-and-24", "warning", i, `Spacing ${m[1]}px is neither 16 or less (inside a surface) nor 24 or more (outside).`);
+      }
       if (/style=\{\{[^}]*\b(?:margin|padding|gap)\w*\s*:\s*['"]?(\d+)/.test(line)) {
         for (const m of line.matchAll(/\b(?:margin|padding|gap)\w*\s*:\s*['"]?(\d+)/g)) {
           if (+m[1] % 4 !== 0) report("off-grid-spacing", "warning", i, `Spacing ${m[1]}px is off the 4px grid. Use 4, 8, 12, 16, 24, 32.`);
@@ -248,6 +251,17 @@ function auditSystem() {
       if (!/^(otto-|is-)/.test(c) && !/^\d/.test(c) && !/\.(woff2?|svg|png)/.test(line)) {
         add("non-otto-class", "error", comp, i + 1, `Class .${c} is not prefixed otto-.`);
       }
+    }
+  });
+  // Inside a surface, padding and gaps are 16px or less
+  const SURFACES = /^\.(otto-card__body|otto-card__header|otto-dialog__\w+|otto-sidesheet__\w+|otto-expansion__body|otto-record|otto-section|otto-notice|otto-tabs-card|otto-actions|otto-rolecard)\b/;
+  const spaceTok = { "--otto-space-5": 20, "--otto-space-6": 24, "--otto-space-8": 32, "--otto-space-10": 40 };
+  css.split("\n").forEach((line, i) => {
+    const sel = line.match(/^(\.[^{]+)\{/);
+    if (!sel || !SURFACES.test(sel[1].trim())) return;
+    for (const m of line.matchAll(/\b(padding|gap)[\w-]*\s*:\s*([^;}]+)/g)) {
+      const big = [...m[2].matchAll(/var\((--otto-space-\d+)\)|(\d+)px/g)].some((v) => (v[1] ? spaceTok[v[1]] : +v[2]) > 16);
+      if (big) add("inside-surface-spacing", "warning", comp, i + 1, `${sel[1].trim()}: ${m[1]} over 16px. Inside a surface, spacing is 16px or less.`);
     }
   });
   // WCAG contrast on pairs that matter

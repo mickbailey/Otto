@@ -1,6 +1,6 @@
 # Component docs
 
-The color tokens and the rules for using them are in [Color](../design-system/docs/foundations/color.md).
+The color tokens and the rules for using them are in [Color](../design-system/docs/foundations/color.md). Radius and spacing rules are in [Shape and spacing](../design-system/docs/foundations/shape-and-spacing.md).
 
 Each component has two documents: **guidelines** (when and how to use it) and **styling and implementation** (dimensions, tokens, states, code).
 

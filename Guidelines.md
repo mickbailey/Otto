@@ -37,21 +37,21 @@ Key groups:
 * **Borders and dividers:** `--otto-border` (same value as `--otto-on-surface-400`)
 * **Brand:** yellow is the primary color: `--otto-primary-800` (the one main action) and `--otto-primary-900` (hover, 80%). Accent steps support elevated and navigational surfaces: `--otto-accent-200` (chips, counts, selection, active tab), `-300` (80%), `-700` (selected rows, avatars), `-800` (hover rows, tags, 80%), plus `--otto-accent-100` for icons and links on accent. `--otto-primary-200` is the primary tint (14%). Text on primary and on tooltips uses `--otto-surface-900`; tooltips sit on `--otto-on-surface-800`. Info uses `--otto-accent-200`
 * **Feedback:** `--otto-success-800`, `--otto-warning-800` and `--otto-destructive-800`, each with a `-900` step (80%) for hover, de-emphasis and containers (the error badge uses `--otto-destructive-900`). Destructive and success also have a light `-200` step for text, borders and icons on dark surfaces, where 800 is too dark to read (`--otto-destructive-200` for error text, `--otto-success-200` on a success tint). `--otto-accent-200` follows `--otto-accent-200`. Reserve destructive for critical feedback and irreversible actions
-* **Shape:** `--otto-radius-sm` 4, `--otto-radius` 8, `--otto-radius-lg` 12, `--otto-radius-pill`
+* **Shape:** `--otto-radius-lg` 16 for **surfaces** (cards, panels, expansion panels, dialogs, record cards); `--otto-radius` 8 for **everything inside a surface** (buttons, fields, rows, hover fills, nested panels, menus); `--otto-radius-sm` 4; `--otto-radius-pill`. A surface nested in a surface steps down to 8, so corners layer concentrically instead of fighting. Don't use 16 on a control or 8 on a top-level surface. Full rules: [Shape and spacing](design-system/docs/foundations/shape-and-spacing.md)
 * **Focus:** `--otto-on-surface-800` (white, the same token as default text). A 2px white outline on every focusable element; text fields get a 2px white border instead
 
 Tailwind utilities are mapped to the same tokens in `src/styles/theme.css` (`bg-surface`, `text-muted`, `border-border`…). Use Tailwind for **layout** (flex, grid, gap, padding). Otto component classes are unlayered, so they win over utilities on the same element; don't fight them with utilities.
 
 ## Spacing and layout
 
-Spacing uses a 4px base. Use these values; don't invent new ones.
+Spacing uses a 4px base. Use these values; don't invent new ones. **Outside a surface, spacing and margins are 24px or more; inside a surface they are 16px or less.** Sections stacked inside a card are 16 apart, and a tab panel starts 16 below its tab bar (the `Tabs` component adds that, so don't add it again). The parent sets the gap; a component never adds outer margin. See [Shape and spacing](design-system/docs/foundations/shape-and-spacing.md).
 
 * **4px** — inside dense controls, between related label elements
 * **8px** — icon to label, between chips and tags, compact metadata
 * **12px** — small grouped rows, card headers
-* **16px** — default spacing inside cards, forms and page content
-* **24px** — card padding, major section separation, two-column form gutters (16px between fields)
-* **32px+** — page-level separation only
+* **16px** — inside surfaces: card padding (12px for small stacked cards), default spacing in forms, gaps between a card's sections
+* **24px** — outside surfaces: page padding, gutters between columns, separation between page regions
+* **32px+** — outside surfaces only: page-level separation
 
 ### Page shell
 

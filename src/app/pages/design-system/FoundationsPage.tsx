@@ -1,4 +1,4 @@
-import { Card, Icon, Tooltip, iconNames } from "../../../components/ds";
+import { Button, Card, Icon, Tooltip, iconNames } from "../../../components/ds";
 
 const COLORS: Array<{ group: string; tokens: Array<[string, string]> }> = [
   { group: "Surface", tokens: [["--otto-surface-900", "Page: app background, page titles, loose text"], ["--otto-surface-800", "Default surface: cards, panels, side nav"], ["--otto-surface-700", "Nested in a card: headers, wells, menus"]] },
@@ -27,7 +27,7 @@ const ON_SURFACE_RULES: Array<[string, string, string]> = [
 const FAMILY_RULES: Array<[string, string, string, string, string]> = [
   ["Primary", "800 · the one main action", "900 · hover", "200 · 14% tint (primary badge)", "One per area. Text on it is --otto-surface-900."],
   ["Accent", "200 · chips, counts, selection, active tab, info", "300 · de-emphasized", "100 · icons and links on accent", "700 and 800 are navigational and selected surfaces: selected rows, avatars, hover rows, tags."],
-  ["Success", "800", "900", "200 · text on a success tint", "Success tints are made from 800 with color-mix."],
+  ["Success", "800", "900", "200 · text on a success tint", "Success text on a tint uses 200."],
   ["Warning", "800", "900", "none", "Reserved for caution, not errors."],
   ["Destructive", "800 · irreversible actions", "900 · hover and error containers", "200 · error text, invalid borders, error tone", "Reserve for critical feedback and irreversible actions."],
 ];
@@ -38,8 +38,24 @@ const COLOR_RULES: Array<[string, string]> = [
   ["Hover steps, never new colors", "Brand and feedback controls hover to their 900 step. Neutral controls hover to --otto-on-surface-300. No one-off hover colors."],
   ["Dark red is a fill, not text", "--otto-destructive-800 under white text is 7.3:1, but as text on a dark surface it is only 2.3:1. Error text and invalid borders use --otto-destructive-200 (7.3:1)."],
   ["Focus is white", "Focus rings and focused field borders use --otto-on-surface-800. Never rely on color change alone."],
-  ["Tints come from the 800 token", "When a family needs a tint that has no step, mix its 800 token with color-mix. Never add a new hex value."],
+  ["No off-scale tints", "Never make a tint with color-mix or opacity. Use a step that exists (a family's 900 or 200, or --otto-on-surface-200/300), or add a token."],
   ["Tailwind uses the same tokens", "bg-background is 900, bg-surface is 800, bg-raised is 700, text-foreground is on-surface-800, text-muted is on-surface-600 and border-border is --otto-border. Do not write hex values in arbitrary classes."],
+];
+
+const SHAPE_RULES: Array<[string, string]> = [
+  ["A surface is 16, what sits on it is 8", "Cards, panels, expansion panels, record cards and dialogs use --otto-radius-lg (16px). Buttons, fields, rows, hover fills, nested panels, menus, banners and tooltips use --otto-radius (8px). The curves are parallel where layers meet."],
+  ["Nested surfaces step down", "A card inside a card is 8px. The system does this automatically; don't nest 16 inside 16."],
+  ["Full-bleed edges stay square", "The side navigation, side sheet and a card cropped to the window edge have no radius on the edge they touch."],
+  ["Never hard-code a radius", "Use the token. The audit warns on a raw border-radius."],
+];
+
+const SPACING_RULES: Array<[string, string]> = [
+  ["Outside 24 or more, inside 16 or less", "Page padding, column gutters and gaps between regions are 24px or more. Padding and gaps inside a surface are 16px or less. The first thing in a surface sits at its padding, with nothing added above it."],
+  ["4px grid", "4, 8, 12, 16, 24, 32. Off-grid values like 10 or 14 are audit warnings."],
+  ["Sections in a surface are 16 apart", "Tab bar, toolbar, content: one 16px gap each, never two gaps added together."],
+  ["A tab panel starts 16 below its tab bar", "The Tabs component adds it. Don't add top padding inside the panel's content."],
+  ["The parent sets the gap", "Use gap on the stack or grid. A component never adds outer margin to push away its neighbor."],
+  ["Rows pad 8", "List and feed entries use 8px padding and an 8px hover fill."],
 ];
 
 const TILE: React.CSSProperties = { border: "1px solid var(--otto-border)", borderRadius: 8, padding: "10px 12px" };
@@ -165,7 +181,7 @@ export function FoundationsPage() {
           ))}
         </Card>
         <Card title="Shape and size">
-          {[["--otto-radius-sm", "4px · tooltips, small controls"], ["--otto-radius", "8px · controls, cards"], ["--otto-radius-lg", "12px · dialogs, outer frames"], ["--otto-radius-pill", "999px · chips, pills, badges"]].map(([t, d]) => (
+          {[["--otto-radius-sm", "4px · tooltips, small controls"], ["--otto-radius", "8px · everything inside a surface"], ["--otto-radius-lg", "16px · surfaces: cards, panels, dialogs"], ["--otto-radius-pill", "999px · chips, pills, badges"]].map(([t, d]) => (
             <div key={t} className="flex items-center gap-3">
               <span style={{ width: 48, height: 32, border: "2px solid var(--otto-accent-100)", borderRadius: `var(${t})` }} />
               <span><code style={{ fontFamily: "var(--otto-font-mono)", fontSize: 11 }}>{t}</code><span className="otto-caption otto-muted" style={{ display: "block" }}>{d}</span></span>
@@ -174,6 +190,36 @@ export function FoundationsPage() {
           <p className="otto-caption otto-muted">Controls: 32px small, 40px default, 44px large. Touch targets at least 44px.</p>
         </Card>
       </div>
+
+      <Card title="Shape and spacing rules">
+        <div className="flex flex-col gap-5">
+          <p className="otto-muted">Surfaces are 16px and what sits on them is 8px, so layered corners nest. Spacing is a 4px grid with 16px between the sections of a surface.</p>
+          <div style={{ background: "var(--otto-surface-900)", padding: 16, borderRadius: 0 }}>
+            <div style={{ background: "var(--otto-surface-800)", borderRadius: "var(--otto-radius-lg)", padding: 16 }} className="flex flex-col gap-4">
+              <span className="otto-caption otto-muted"><code style={CODE}>--otto-radius-lg</code> 16 · surface</span>
+              <div style={{ background: "var(--otto-surface-700)", borderRadius: "var(--otto-radius)", padding: 12 }}>
+                <span className="otto-caption otto-muted"><code style={CODE}>--otto-radius</code> 8 · nested panel</span>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="secondary">Cancel</Button>
+                <Button variant="primary">Save</Button>
+              </div>
+            </div>
+          </div>
+          <h3 className="otto-label">Shape</h3>
+          <ol className="flex flex-col gap-2" style={{ margin: 0, paddingLeft: 20 }}>
+            {SHAPE_RULES.map(([t, d]) => (
+              <li key={t}><span className="otto-label" style={{ display: "inline" }}>{t}.</span> <span className="otto-muted">{d}</span></li>
+            ))}
+          </ol>
+          <h3 className="otto-label">Spacing</h3>
+          <ol className="flex flex-col gap-2" style={{ margin: 0, paddingLeft: 20 }}>
+            {SPACING_RULES.map(([t, d]) => (
+              <li key={t}><span className="otto-label" style={{ display: "inline" }}>{t}.</span> <span className="otto-muted">{d}</span></li>
+            ))}
+          </ol>
+        </div>
+      </Card>
 
       <Card title="Icons">
         <p className="otto-muted">Rounded 24px line icons in one stroke weight. Decorative next to a label; give standalone icons a label.</p>

@@ -38,8 +38,8 @@ Companion skills: **otto-principles** (UX and copy rules to apply while designin
 | Error text, borders, icons | `--otto-destructive-200` (800 fails contrast as text) |
 | Success / warning | `--otto-success-*` / `--otto-warning-*` |
 | Type | `.otto-display / headline / title / subtitle / body-lg / label / caption / muted` |
-| Radius | `--otto-radius-sm / radius / radius-lg / radius-pill` |
-| Spacing | 4, 8, 12, 16, 24, 32. Cards pad 24, default gap 16 |
+| Radius | Surfaces (cards, panels, dialogs) `--otto-radius-lg` 16; everything inside a surface `--otto-radius` 8; a surface nested in a surface 8; `-sm` 4, `-pill` |
+| Spacing | 4, 8, 12, 16, 24, 32. **Outside a surface 24+, inside 16 or less.** Cards pad 16 (12 for small stacked cards), sections inside a card are 16 apart. A tab panel already starts 16 below its tab bar; the parent sets gaps, components add no outer margin. See `design-system/docs/foundations/shape-and-spacing.md` |
 
 - No hex, `rgb()`, `color-mix`, or opacity tints. No Tailwind palette classes (`bg-gray-500`, `text-white`). Use a step that exists.
 - Disabled = `on-surface-400` text + `on-surface-300` fill, never `opacity`.
