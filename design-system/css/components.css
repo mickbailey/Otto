@@ -96,6 +96,7 @@
   transition: background-color var(--otto-duration) ease, border-color var(--otto-duration) ease;
 }
 .otto-btn svg { width: 16px; height: 16px; }
+.otto-btn--xl { height: var(--otto-control-xl); }
 .otto-btn--sm { height: var(--otto-control-sm); padding: 0 var(--otto-space-3); font-size: 12px; }
 .otto-btn--primary { background: var(--otto-primary-800); color: var(--otto-surface-900); }
 .otto-btn--primary:hover:not(:disabled) { background: var(--otto-primary-900); }
@@ -138,7 +139,7 @@
 .otto-field > .otto-label { margin-bottom: 6px; }
 .otto-field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--otto-space-4); }
 .otto-input, .otto-select, .otto-textarea {
-  display: flex; align-items: center; gap: 10px; width: 100%; min-height: var(--otto-control-lg); padding: 6px var(--otto-space-3);
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: var(--otto-control-xl); padding: 6px var(--otto-space-3);
   border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200);
   color: var(--otto-on-surface-800); font: var(--otto-text-body); transition: border-color var(--otto-duration) ease;
 }
@@ -156,7 +157,7 @@
 .otto-input--static:hover { border-color: var(--otto-border); }
 
 /* search */
-.otto-search { display: flex; align-items: center; gap: 10px; min-height: var(--otto-control-lg); padding: 0 var(--otto-space-3); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200); }
+.otto-search { display: flex; align-items: center; gap: 10px; min-height: var(--otto-control-xl); padding: 0 var(--otto-space-3); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200); }
 .otto-search:focus-within { border-color: var(--otto-on-surface-800); }
 .otto-search svg { width: 20px; height: 20px; }
 .otto-search input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; }
@@ -165,14 +166,15 @@
 /* ---------- Combobox (CSS only: opens while focused) ---------- */
 .otto-combobox { position: relative; }
 .otto-combobox__control {
-  display: flex; align-items: center; flex-wrap: wrap; gap: var(--otto-space-2); min-height: 56px; padding: var(--otto-space-2) var(--otto-space-3);
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--otto-space-2); min-height: var(--otto-control-xl); padding: var(--otto-space-1) var(--otto-space-3);
   border: 1px solid var(--otto-border); border-radius: var(--otto-radius); background: var(--otto-on-surface-200); cursor: text; outline: none;
   transition: border-color var(--otto-duration) ease;
 }
 .otto-combobox__control:hover { border-color: var(--otto-on-surface-500); }
 .otto-combobox:focus-within .otto-combobox__control { border-color: var(--otto-on-surface-800); }
 .otto-combobox__control > svg { width: 24px; height: 24px; margin-right: var(--otto-space-1); }
-.otto-combobox__placeholder { flex: 1 1 120px; min-width: 0; line-height: 36px; color: var(--otto-on-surface-600); font-size: 16px; }
+.otto-combobox__control input { height: var(--otto-control-sm); min-height: 0; }
+.otto-combobox__placeholder { flex: 1 1 120px; min-width: 0; line-height: var(--otto-control-sm); color: var(--otto-on-surface-600); font-size: 16px; }
 .otto-combobox__menu {
   display: none; position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 4px);
   background: var(--otto-surface-700); border: 1px solid var(--otto-border); border-radius: var(--otto-radius); overflow: hidden; box-shadow: var(--otto-shadow-menu);

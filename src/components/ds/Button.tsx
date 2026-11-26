@@ -3,12 +3,12 @@ import { Icon, type IconName } from "../primitives/Icon";
 import { cx } from "../primitives";
 
 export type ButtonVariant = "primary" | "secondary" | "tertiary" | "ghost" | "destructive";
-export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonSize = "sm" | "md" | "lg" | "xl";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** primary: the one main action in an area (yellow, use sparingly). secondary: outlined. tertiary: text only. ghost: low emphasis. destructive: permanent actions. */
   variant?: ButtonVariant;
-  /** sm 32px, md 40px (default), lg 44px. */
+  /** sm 32px, md 40px (default), lg 44px, xl 48px (beside a text field or search). */
   size?: ButtonSize;
   /** Leading icon. Never pair the "add" icon with the word "Add" — use "New …". */
   icon?: IconName;

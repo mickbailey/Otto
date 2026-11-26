@@ -30,7 +30,7 @@ function cardFor(c: Candidate): CandidateCard {
 
 function SearchField({ id, icon, label, value, onChange }: { id: string; icon: IconName; label: string; value: string; onChange: (v: string) => void }) {
   return (
-    <div className="otto-search" style={{ minHeight: 40, minWidth: 0, borderColor: "var(--otto-border)" }}>
+    <div className="otto-search" style={{ minWidth: 0, borderColor: "var(--otto-border)" }}>
       <Icon name={icon} size={22} />
       <label htmlFor={id} className="otto-sr">{label}</label>
       <input id={id} type="search" placeholder={label} value={value} onChange={(e) => onChange(e.target.value)} autoComplete="off" />
@@ -177,12 +177,12 @@ export function CandidatesPage() {
           items={STATUSES.map((s) => ({ value: s, label: s }))}
           onSelect={(v) => { setStatuses((cur) => (cur.includes(v as Candidate["status"]) ? cur.filter((x) => x !== v) : [...cur, v as Candidate["status"]])); setPage(1); }}
           trigger={(p) => (
-            <button {...p} type="button" className="otto-btn otto-btn--secondary" style={{ height: 40, gap: 14 }}>
+            <button {...p} type="button" className="otto-btn otto-btn--secondary otto-btn--xl" style={{ gap: 12 }}>
               Filters <Icon name="mFilterList" size={22} />
             </button>
           )}
         />
-        <Button variant="secondary" disabled={!anyFilter} onClick={reset} style={{ height: 40, borderColor: anyFilter ? undefined : "var(--otto-on-surface-300)" }}>Reset</Button>
+        <Button variant="secondary" size="xl" disabled={!anyFilter} onClick={reset} style={{ borderColor: anyFilter ? undefined : "var(--otto-on-surface-300)" }}>Reset</Button>
       </div>
       {statuses.length > 0 && (
         <div className="flex flex-wrap gap-2" aria-label="Active filters">

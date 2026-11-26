@@ -182,7 +182,7 @@ Structure:
 * **Tertiary** — text only. Available but not emphasized.
 * **Ghost** — surface fill. Toolbars and in-card actions.
 * **Destructive** — red fill. Permanent actions.
-* Sizes: 40px default, 32px `sm`, 44px `lg`; icon buttons are 40×40.
+* Sizes: 40px default, 32px `sm`, 44px `lg`, 48px `xl` (use `xl` for buttons beside a text field or search so the row lines up); icon buttons are 40×40. Text fields, selects and search are 48px tall.
 * **A + icon never pairs with the word "Add".** Use "New …" (New activity, New contact). "Add a requisition" without an icon is fine.
 
 ## Component states

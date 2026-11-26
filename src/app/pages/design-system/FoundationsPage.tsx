@@ -187,7 +187,7 @@ export function FoundationsPage() {
               <span><code style={{ fontFamily: "var(--otto-font-mono)", fontSize: 11 }}>{t}</code><span className="otto-caption otto-muted" style={{ display: "block" }}>{d}</span></span>
             </div>
           ))}
-          <p className="otto-caption otto-muted">Controls: 32px small, 40px default, 44px large. Touch targets at least 44px.</p>
+          <p className="otto-caption otto-muted">Controls: 32px small, 40px default, 44px large. Text fields, selects and search: 48px. Touch targets at least 44px.</p>
         </Card>
       </div>
 

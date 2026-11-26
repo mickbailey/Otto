@@ -13,7 +13,7 @@ Visual specs and usage. Rules live in [Button](../components/button.md). CSS: `d
 
 | Property | Value |
 | --- | --- |
-| Height | 40px default · 32px `sm` · 44px `lg` |
+| Height | 40px default · 32px `sm` · 44px `lg` · 48px `xl` (beside a text field or search) |
 | Padding | 0 20px (12px `sm`) |
 | Gap | 8px between icon and label |
 | Radius | `--otto-radius` 8px |

@@ -84,6 +84,7 @@
   --otto-control-sm: 32px;
   --otto-control: 40px;
   --otto-control-lg: 44px;
+  --otto-control-xl: 48px;     /* text fields, selects, search, and the buttons beside them */
   --otto-sidenav: 64px;
   --otto-sidenav-expanded: 232px;
   --otto-topbar: 52px;
