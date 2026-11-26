@@ -63,13 +63,14 @@ const CODE: React.CSSProperties = { fontFamily: "var(--otto-font-mono)", fontSiz
 
 const TYPE: Array<[string, string, string]> = [
   ["--otto-text-display", "Display", "Page titles · 28 / Medium"],
-  ["--otto-text-headline", "Headline", "Large figures · 24 / Medium"],
+  ["--otto-text-headline", "Headline", "Large figures · 24 / Regular"],
   ["--otto-text-title", "Title", "Card and section titles · 20 / Regular"],
   ["--otto-text-subtitle", "Subtitle", "Emphasis, list titles · 16 / SemiBold"],
   ["--otto-text-body-lg", "Body large", "Menu options, chips · 16 / Regular"],
   ["--otto-text-body", "Body", "Default text · 14 / Regular"],
-  ["--otto-text-label", "Label", "Field labels, buttons · 13 / SemiBold"],
+  ["--otto-text-label", "Label", "Field labels, buttons · 14 / SemiBold"],
   ["--otto-text-caption", "Caption", "Metadata, helper text · 12 / Regular"],
+  ["--otto-text-caption-bold", "Caption bold", "Small headings · 12 / SemiBold"],
 ];
 
 const SPACE = [["--otto-space-1", 4], ["--otto-space-2", 8], ["--otto-space-3", 12], ["--otto-space-4", 16], ["--otto-space-5", 20], ["--otto-space-6", 24], ["--otto-space-8", 32], ["--otto-space-10", 40]] as const;
@@ -158,7 +159,7 @@ export function FoundationsPage() {
       </Card>
 
       <Card title="Typography">
-        <p className="otto-muted">One family, Poppins, at four weights. Sentence case everywhere except page titles, section titles and tab labels.</p>
+        <p className="otto-muted">One family, Inter, at three weights. Sentence case everywhere except page titles, section titles and tab labels.</p>
         <div className="flex flex-col">
           {TYPE.map(([t, name, use]) => (
             <div key={t} className="grid items-baseline gap-4" style={{ gridTemplateColumns: "minmax(0, 1fr) minmax(160px, 260px)", padding: "12px 0", borderTop: "1px solid var(--otto-on-surface-300)" }}>
@@ -187,7 +188,7 @@ export function FoundationsPage() {
               <span><code style={{ fontFamily: "var(--otto-font-mono)", fontSize: 11 }}>{t}</code><span className="otto-caption otto-muted" style={{ display: "block" }}>{d}</span></span>
             </div>
           ))}
-          <p className="otto-caption otto-muted">Controls: 32px small, 40px default, 44px large. Text fields, selects and search: 48px. Touch targets at least 44px.</p>
+          <p className="otto-caption otto-muted">Controls: 32px small, 40px default, 44px large. Text fields, selects and search: 40px, the same as a default button. Touch targets at least 44px.</p>
         </Card>
       </div>
 

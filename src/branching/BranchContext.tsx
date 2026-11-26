@@ -119,13 +119,13 @@ export function BranchPanel() {
         >
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <Icon name="branch" size={18} />
-            <strong style={{ fontSize: 13, marginRight: "auto" }}>Design variants</strong>
+            <strong style={{ fontSize: 12, marginRight: "auto" }}>Design variants</strong>
             <IconButton icon="close" label="Close variants" onClick={() => setOpen(false)} />
           </div>
           {Object.entries(FEATURES).map(([feature, info]) => (
             <fieldset key={feature} style={{ border: 0, margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
               <legend style={{ padding: 0, marginBottom: 6 }}>
-                <span style={{ fontWeight: 600, fontSize: 13 }}>{info.name}</span>
+                <span style={{ fontWeight: 600, fontSize: 12 }}>{info.name}</span>
                 <span style={{ display: "block", color: "var(--otto-on-surface-600)" }}>{info.where}</span>
               </legend>
               {BRANCHES.filter((b) => b.feature === feature).map((b) => (

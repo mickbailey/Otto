@@ -38,8 +38,8 @@ Visual specs, tokens and markup. Usage rules live in [In-page navigation](../com
 
 | Element | Font | Size / line height | Token |
 | --- | --- | --- | --- |
-| Label | Poppins SemiBold 600 | 14 / 20px | `--otto-text-label`, color `--otto-on-surface-800` |
-| Tooltip | Poppins SemiBold 600 | 12 / 16px | `--otto-text-label` |
+| Label | Inter SemiBold 600 | 14px, 1.4 | `--otto-text-label`, color `--otto-on-surface-800` |
+| Tooltip | Inter SemiBold 600 | 12px | `--otto-text-caption-bold` |
 
 Labels truncate with an ellipsis on one line.
 

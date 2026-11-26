@@ -13,7 +13,7 @@ Visual specs and usage. Rules live in [Fields](../components/field.md). CSS: `de
 
 | Property | Value |
 | --- | --- |
-| Height | 48px (`--otto-control-xl`) |
+| Height | 40px (`--otto-control`) |
 | Padding | 6px 12px |
 | Label gap | 6px |
 | Two-column gutter | 16px |

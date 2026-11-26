@@ -82,12 +82,12 @@ function ActivityTab({ days, total }: { days: Array<{ day: string; items: Accoun
           items={items}
           onSelect={toggle}
           trigger={(p) => (
-            <button {...p} type="button" className="otto-btn otto-btn--secondary otto-btn--xl" style={{ gap: 12 }}>
+            <button {...p} type="button" className="otto-btn otto-btn--secondary" style={{ gap: 12 }}>
               Filters{filters.length > 0 && <span className="otto-count">{filters.length}</span>}<Icon name="mFilterList" size={20} />
             </button>
           )}
         />
-        <Button variant="secondary" size="xl" disabled={!filtered} onClick={() => { setQ(""); setFilters([]); }}>Reset</Button>
+        <Button variant="secondary" disabled={!filtered} onClick={() => { setQ(""); setFilters([]); }}>Reset</Button>
       </div>
       {filters.length > 0 && (
         <div className="flex flex-wrap gap-2 items-center" aria-label="Active filters">

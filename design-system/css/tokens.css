@@ -50,19 +50,20 @@
   --otto-destructive-900: rgba(176,0,32,0.80); /* destructive hover, error badge and containers */
 
   /* ---- Type ---- */
-  --otto-font: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --otto-font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --otto-weight-regular: 400;
   --otto-weight-medium: 500;
   --otto-weight-semibold: 600;
   --otto-text-display: var(--otto-weight-medium) 28px/1.2 var(--otto-font);
-  --otto-text-headline: var(--otto-weight-medium) 24px/1.25 var(--otto-font);
+  --otto-text-headline: var(--otto-weight-regular) 24px/1.2 var(--otto-font);
   --otto-text-title: var(--otto-weight-regular) 20px/1.2 var(--otto-font);
   --otto-text-subtitle: var(--otto-weight-semibold) 16px/1.4 var(--otto-font);
-  --otto-text-body-lg: var(--otto-weight-regular) 16px/1.5 var(--otto-font);
-  --otto-text-body: var(--otto-weight-regular) 14px/1.45 var(--otto-font);
-  --otto-text-label: var(--otto-weight-semibold) 13px/1.3 var(--otto-font);
-  --otto-text-caption: var(--otto-weight-regular) 12px/1.35 var(--otto-font);
-  --otto-text-overline: var(--otto-weight-semibold) 11px/1.2 var(--otto-font);
+  --otto-text-body-lg: var(--otto-weight-regular) 16px/1.4 var(--otto-font);
+  --otto-text-body: var(--otto-weight-regular) 14px/1.4 var(--otto-font);
+  --otto-text-label: var(--otto-weight-semibold) 14px/1.4 var(--otto-font);
+  --otto-text-caption: var(--otto-weight-regular) 12px/normal var(--otto-font);
+  --otto-text-caption-bold: var(--otto-weight-semibold) 12px/normal var(--otto-font);
+  --otto-text-overline: var(--otto-weight-semibold) 12px/normal var(--otto-font);
 
   /* ---- Space (4px base) ---- */
   --otto-space-1: 4px;
@@ -84,7 +85,6 @@
   --otto-control-sm: 32px;
   --otto-control: 40px;
   --otto-control-lg: 44px;
-  --otto-control-xl: 48px;     /* text fields, selects, search, and the buttons beside them */
   --otto-sidenav: 64px;
   --otto-sidenav-expanded: 232px;
   --otto-topbar: 52px;

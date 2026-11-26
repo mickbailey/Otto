@@ -39,7 +39,7 @@ Don't use it:
 
 | Part | Description |
 | --- | --- |
-| Container | 40px tall (32 small, 44 large, 48 extra large beside a text field), 8px radius |
+| Container | 40px tall (32 small, 44 large), 8px radius |
 | Label | Sentence case, SemiBold |
 | Leading icon | Optional, 16px |
 | Trailing icon | Optional, 16px, e.g. expand for menu triggers |

@@ -83,7 +83,7 @@ def single_file(example, out, embed_css):
     page_css = re.search(r"<style>(.*?)</style>", html, re.S).group(1)
     body = re.search(r"<body[^>]*>(.*)</body>", html, re.S).group(1)
     page_css = walk(page_css)
-    font = "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');\n"
+    font = "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');\n"
     doc = (f"<!-- {example}: Otto design system, plain HTML + CSS, no JavaScript.\n"
            f"     Everything is scoped under .otto-theme so it won't touch the rest of your page. -->\n"
            f"<style>\n{font}{embed_css}{page_css}</style>\n"

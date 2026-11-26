@@ -42,7 +42,7 @@ Don't use it:
 | --- | --- |
 | Label | `--otto-text-label`, above the field |
 | Required marker | Red asterisk after the label |
-| Control | 48px tall, 8px radius, field fill |
+| Control | 40px tall, 8px radius, field fill |
 | Helper text | Caption, muted, below |
 | Error text | Caption with error icon; replaces helper text |
 

@@ -50,7 +50,7 @@ function FeedItem({ e }: { e: FeedEntry }) {
       </div>
       <div className="otto-feed-entry__thread">
         <span className="otto-feed-entry__by"><Avatar name={e.by} size="xs" navy />{e.by}</span>
-        {e.note && <span style={{ fontSize: 15 }}>{e.note}</span>}
+        {e.note && <span style={{ fontSize: 14 }}>{e.note}</span>}
         {e.tags && (
           <span className="otto-tags">
             {e.tags.map((t, i) => <span key={t} className={i === 0 ? "otto-tag otto-tag--muted" : "otto-tag otto-tag--navy"}>{t}</span>)}
@@ -85,8 +85,8 @@ function CandidateRecord({ c, onRates }: { c: Candidate; onRates: (c: Candidate)
       </div>
 
       <div className="otto-record__main">
-        <p style={{ fontSize: 15 }}>{c.currentRole}</p>
-        <ul className="otto-detail-list" style={{ fontSize: 15 }}>
+        <p style={{ fontSize: 14 }}>{c.currentRole}</p>
+        <ul className="otto-detail-list" style={{ fontSize: 14 }}>
           <li><Icon name="mPhone" /><span>{c.phone}</span></li>
           <li><Icon name="mMail" /><span>{c.email}</span></li>
           <li><Icon name="mPlace" /><span>{c.location}</span></li>
@@ -177,12 +177,12 @@ export function CandidatesPage() {
           items={STATUSES.map((s) => ({ value: s, label: s }))}
           onSelect={(v) => { setStatuses((cur) => (cur.includes(v as Candidate["status"]) ? cur.filter((x) => x !== v) : [...cur, v as Candidate["status"]])); setPage(1); }}
           trigger={(p) => (
-            <button {...p} type="button" className="otto-btn otto-btn--secondary otto-btn--xl" style={{ gap: 12 }}>
+            <button {...p} type="button" className="otto-btn otto-btn--secondary" style={{ gap: 12 }}>
               Filters <Icon name="mFilterList" size={22} />
             </button>
           )}
         />
-        <Button variant="secondary" size="xl" disabled={!anyFilter} onClick={reset} style={{ borderColor: anyFilter ? undefined : "var(--otto-on-surface-300)" }}>Reset</Button>
+        <Button variant="secondary" disabled={!anyFilter} onClick={reset} style={{ borderColor: anyFilter ? undefined : "var(--otto-on-surface-300)" }}>Reset</Button>
       </div>
       {statuses.length > 0 && (
         <div className="flex flex-wrap gap-2" aria-label="Active filters">
@@ -206,12 +206,12 @@ export function CandidatesPage() {
             items={SORTS}
             onSelect={setSort}
             trigger={(p) => (
-              <button {...p} type="button" className="otto-btn otto-btn--link" style={{ color: "var(--otto-on-surface-800)", justifySelf: "start", paddingLeft: 0, fontSize: 15, fontWeight: 500 }}>
+              <button {...p} type="button" className="otto-btn otto-btn--link" style={{ color: "var(--otto-on-surface-800)", justifySelf: "start", paddingLeft: 0, fontSize: 14, fontWeight: 500 }}>
                 {SORTS.find((s) => s.value === sort)!.label}<Icon name="mExpandMore" size={22} />
               </button>
             )}
           />
-          <span className="otto-caption" aria-live="polite" style={{ fontSize: 13 }}>{from}–{to} of {rows.length.toLocaleString()} candidates</span>
+          <span className="otto-caption" aria-live="polite" style={{ fontSize: 12 }}>{from}–{to} of {rows.length.toLocaleString()} candidates</span>
         </div>
 
         <BranchSwitch
@@ -228,7 +228,7 @@ export function CandidatesPage() {
           }}
         />
 
-        <nav className="flex flex-wrap items-center justify-between gap-3 otto-caption otto-muted" aria-label="Pagination" style={{ fontSize: 13 }}>
+        <nav className="flex flex-wrap items-center justify-between gap-3 otto-caption otto-muted" aria-label="Pagination" style={{ fontSize: 12 }}>
           <span>Showing {from}–{to} of {rows.length} results</span>
           <span className="flex items-center gap-6">
             <MenuTrigger
@@ -237,7 +237,7 @@ export function CandidatesPage() {
               align="right"
               items={PAGE_SIZES.map((n) => ({ value: String(n), label: `${n} per page` }))}
               onSelect={(v) => { setPageSize(Number(v)); setPage(1); }}
-              trigger={(p) => <button {...p} type="button" className="otto-btn otto-btn--link" style={{ color: "var(--otto-on-surface-800)", height: 32, fontSize: 13, fontWeight: 400 }}>{pageSize} per page<Icon name="mExpandMore" size={18} /></button>}
+              trigger={(p) => <button {...p} type="button" className="otto-btn otto-btn--link" style={{ color: "var(--otto-on-surface-800)", height: 32, fontSize: 12, fontWeight: 400 }}>{pageSize} per page<Icon name="mExpandMore" size={18} /></button>}
             />
             <span className="flex items-center gap-2" style={{ color: "var(--otto-on-surface-800)" }}>
               <IconButton icon="mChevronLeft" label="Previous page" disabled={current === 1} onClick={() => setPage(current - 1)} style={{ width: 32, height: 32, opacity: current === 1 ? 0.4 : 1 }} />

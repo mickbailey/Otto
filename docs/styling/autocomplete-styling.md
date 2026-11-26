@@ -13,7 +13,7 @@ Visual specs and usage. Rules live in [Autocomplete](../components/autocomplete.
 
 | Property | Value |
 | --- | --- |
-| Control | 48px min height (`--otto-control-xl`); grows with wrapped chips |
+| Control | 40px min height (`--otto-control`); grows with wrapped chips |
 | Option padding | 14px 20px |
 | Menu | 4px below the control, full width |
 

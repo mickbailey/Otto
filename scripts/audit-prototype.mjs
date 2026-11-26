@@ -135,7 +135,7 @@ function auditFile(file) {
     // --- typography and shape: raw values instead of tokens
     if (!isTokenFile && !/design-system\/css\/components\.css$/.test(r)) {
       if (/font-family\s*:|fontFamily\s*:/.test(line) && !/var\(--otto-font/.test(line) && !/inherit/.test(line)) {
-        report("raw-font", "error", i, "Raw font-family. Poppins comes from the theme; mono is var(--otto-font-mono) and only for docs/variants panel.");
+        report("raw-font", "error", i, "Raw font-family. Inter comes from the theme; mono is var(--otto-font-mono) and only for docs/variants panel.");
       }
       if (/(font-size\s*:\s*\d|fontSize\s*:\s*['"]?\d)/.test(line)) report("raw-type-size", "warning", i, "Raw font size. Use a type token or class (.otto-body, .otto-caption, --otto-text-*).");
       if (/(border-radius\s*:\s*\d|borderRadius\s*:\s*['"]?\d)/.test(line)) report("raw-radius", "warning", i, "Raw radius. Use --otto-radius-sm / --otto-radius / --otto-radius-lg / --otto-radius-pill.");

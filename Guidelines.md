@@ -8,7 +8,7 @@ These guidelines keep every prototype built from this template consistent and on
 
 Two font families are allowed:
 
-* **Poppins** — all product UI: headings, body, labels, buttons, inputs, tables, tags.
+* **Inter** — all product UI: headings, body, labels, buttons, inputs, tables, tags.
 * **JetBrains Mono** (`var(--otto-font-mono)`) — the design-variants panel and token names in docs only. Never in product UI.
 
 Use the type tokens from `design-system/css/tokens.css`, never raw sizes:
@@ -16,13 +16,14 @@ Use the type tokens from `design-system/css/tokens.css`, never raw sizes:
 | Token | Use | Size / weight |
 | --- | --- | --- |
 | `--otto-text-display` | Page titles | 28 / Medium |
-| `--otto-text-headline` | Large figures | 24 / Medium |
+| `--otto-text-headline` | Large figures, record names | 24 / Regular |
 | `--otto-text-title` | Card and section titles | 20 / Regular |
 | `--otto-text-subtitle` | Emphasis, list titles | 16 / SemiBold |
 | `--otto-text-body-lg` | Menu options, large chips | 16 / Regular |
 | `--otto-text-body` | Default text | 14 / Regular |
-| `--otto-text-label` | Field labels, buttons | 13 / SemiBold |
+| `--otto-text-label` | Field labels, buttons, bold small text | 14 / SemiBold |
 | `--otto-text-caption` | Metadata, helper text | 12 / Regular |
+| `--otto-text-caption-bold` | Bold small text, small headings | 12 / SemiBold |
 
 Classes: `.otto-display`, `.otto-headline`, `.otto-title`, `.otto-subtitle`, `.otto-body-lg`, `.otto-label`, `.otto-caption`, `.otto-muted`.
 
@@ -182,7 +183,7 @@ Structure:
 * **Tertiary** — text only. Available but not emphasized.
 * **Ghost** — surface fill. Toolbars and in-card actions.
 * **Destructive** — red fill. Permanent actions.
-* Sizes: 40px default, 32px `sm`, 44px `lg`, 48px `xl` (use `xl` for buttons beside a text field or search so the row lines up); icon buttons are 40×40. Text fields, selects and search are 48px tall.
+* Sizes: 40px default, 32px `sm`, 44px `lg`; icon buttons are 40×40. Text fields, selects and search are 40px tall, the same as a default button, so a row of them lines up.
 * **A + icon never pairs with the word "Add".** Use "New …" (New activity, New contact). "Add a requisition" without an icon is fine.
 
 ## Component states
