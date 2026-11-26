@@ -24,7 +24,7 @@ Don't use it:
 | Variant | Class | Use for |
 | --- | --- | --- |
 | **Plain** | `otto-notice` | An unobtrusive hint that blends into the surrounding panel |
-| **Boxed** | `otto-notice otto-notice--boxed` | A notice that needs a visible container to stand apart from adjacent content (`--otto-accent-800` fill, `--otto-accent-700` border) |
+| **Boxed** | `otto-notice otto-notice--boxed` | A notice that needs a visible container to stand apart from adjacent content (`--otto-accent-900` fill, `--otto-accent-800` border) |
 
 ## Anatomy
 

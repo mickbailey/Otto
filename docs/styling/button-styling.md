@@ -24,7 +24,7 @@ Visual specs and usage. Rules live in [Button](../components/button.md). CSS: `d
 | State | Treatment |
 | --- | --- |
 | Default | Variant fill or border |
-| Hover | Primary `--otto-primary-900`; secondary `--otto-on-surface-300` fill; ghost `--otto-accent-800`; destructive `--otto-destructive-900` |
+| Hover | Primary `--otto-primary-900`; secondary `--otto-on-surface-300` fill; ghost `--otto-accent-900`; destructive `--otto-destructive-900` |
 | Focus | 2px `--otto-on-surface-800` (white) outline, 2px offset |
 | Disabled | `--otto-on-surface-300` fill, `--otto-border` text, not-allowed cursor |
 

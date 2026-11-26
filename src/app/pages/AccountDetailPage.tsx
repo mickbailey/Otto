@@ -192,15 +192,15 @@ function AccountView({ id }: { id: string }) {
           <span className="otto-sticky__name">{account.name}</span>
           <TeamStack people={d.team} total={d.teamSize} />
           <span className="otto-sticky__actions">
-            <Button variant="ghost" tabIndex={stuck ? 0 : -1} onClick={() => toast.info("Editing is not part of this prototype")}>Edit</Button>
+            {can("activity.create") && <Button variant="primary" icon="add" tabIndex={stuck ? 0 : -1} onClick={() => runAction("activity")}>New activity</Button>}
             <MenuTrigger
-              label="Account actions"
+              label="More account actions"
               align="right"
               items={actions}
               onSelect={runAction}
               trigger={(p) => (
-                <button {...p} type="button" tabIndex={stuck ? 0 : -1} className="otto-btn otto-btn--secondary otto-sticky__menu-btn">
-                  Actions<Icon name="mExpandMore" size={20} />
+                <button {...p} type="button" tabIndex={stuck ? 0 : -1} aria-label="More account actions" title="More account actions" className="otto-icon-btn otto-icon-btn--ghost">
+                  <Icon name="mMoreHoriz" size={20} />
                 </button>
               )}
             />

@@ -129,7 +129,7 @@ export function BranchPanel() {
                 <span style={{ display: "block", color: "var(--otto-on-surface-600)" }}>{info.where}</span>
               </legend>
               {BRANCHES.filter((b) => b.feature === feature).map((b) => (
-                <label key={b.id} style={{ display: "grid", gridTemplateColumns: "18px 1fr auto", gap: 8, padding: 10, borderRadius: 8, cursor: "pointer", background: active[feature] === b.id ? "var(--otto-accent-800)" : "transparent", border: "1px solid var(--otto-on-surface-300)" }}>
+                <label key={b.id} style={{ display: "grid", gridTemplateColumns: "18px 1fr auto", gap: 8, padding: 10, borderRadius: 8, cursor: "pointer", background: active[feature] === b.id ? "var(--otto-accent-900)" : "transparent", border: "1px solid var(--otto-on-surface-300)" }}>
                   <input type="radio" name={feature} checked={active[feature] === b.id} onChange={() => select(b.id)} style={{ margin: "2px 0 0", accentColor: "var(--otto-accent-200)" }} />
                   <span>
                     <span style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>

@@ -33,8 +33,8 @@
   --otto-accent-100: #8CC4E6;                /* icons and links on accent */
   --otto-accent-200: #307AA6;                /* chips, counts, selection, active tab, info */
   --otto-accent-300: rgba(48,122,166,0.80);  /* accent hover (selected chip, current page) */
-  --otto-accent-700: #234F69;                /* selected rows, avatars */
-  --otto-accent-800: rgba(35,79,105,0.80);   /* hover rows, tags, highlights */
+  --otto-accent-800: #234F69;                /* selected rows, avatars */
+  --otto-accent-900: rgba(35,79,105,0.80);   /* hover rows, tags, highlights */
 
   /* ---- Color: feedback ----
      Reserve destructive colors for critical feedback and irreversible actions.

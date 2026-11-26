@@ -55,8 +55,8 @@ For anything nested further than 700, use a translucent fill (`--otto-on-surface
 | `--otto-accent-100` | `#8CC4E6` | Icons and links on accent surfaces |
 | `--otto-accent-200` | `#307AA6` | Chips, counts, selection, active tab, switch track, info tone |
 | `--otto-accent-300` | accent 80% | Hover on a selected accent fill (selected filter chip, current page) |
-| `--otto-accent-700` | `#234F69` | Selected rows, avatars, boxed-notice border |
-| `--otto-accent-800` | navy 80% | Hover rows, tags, ghost button hover, boxed-notice fill |
+| `--otto-accent-800` | `#234F69` | Selected rows, avatars, boxed-notice border |
+| `--otto-accent-900` | navy 80% | Hover rows, tags, ghost button hover, boxed-notice fill |
 
 ## Feedback
 
@@ -93,14 +93,14 @@ Reserve destructive colors for critical feedback and irreversible actions.
 | Menu, combobox menu | `--otto-surface-700`, `--otto-border` border, `--otto-shadow-menu` |
 | Toast | `--otto-surface-700`, `--otto-border`, 4px left edge and icon in the tone color, shadow |
 | Banner | Same as a toast without the shadow: `--otto-surface-700`, `--otto-border`, 4px left edge and icon in the tone color |
-| Boxed notice | `--otto-accent-800` fill, `--otto-accent-700` border |
-| Badge | Neutral by default. Primary `--otto-primary-200` fill, navy `--otto-accent-700`, error `--otto-destructive-900`, final `--otto-on-surface-300` fill with `--otto-success-200` text |
+| Boxed notice | `--otto-accent-900` fill, `--otto-accent-800` border |
+| Badge | Neutral by default. Primary `--otto-primary-200` fill, navy `--otto-accent-800`, error `--otto-destructive-900`, final `--otto-on-surface-300` fill with `--otto-success-200` text |
 | Field | `--otto-on-surface-200` fill, `--otto-border` border, `--otto-on-surface-500` on hover, `--otto-on-surface-800` on focus, `--otto-destructive-200` when invalid |
 | Disabled button, icon button | `--otto-on-surface-300` fill, `--otto-on-surface-400` text, no border |
 | Disabled field | Same as a disabled button |
 | Disabled checkbox, menu item, pagination button | `--otto-on-surface-400` text and icons |
-| Ghost button | `--otto-on-surface-200` fill (works on any surface), `--otto-accent-800` on hover |
-| Selected | Accent: `--otto-accent-200` for chips, counts, tabs and switches, `--otto-accent-700` for rows and avatars. A selected filter chip and the current page hover to `--otto-accent-300`; an unselected filter chip hovers to `--otto-on-surface-300` |
+| Ghost button | `--otto-on-surface-200` fill (works on any surface), `--otto-accent-900` on hover |
+| Selected | Accent: `--otto-accent-200` for chips, counts, tabs and switches, `--otto-accent-800` for rows and avatars. A selected filter chip and the current page hover to `--otto-accent-300`; an unselected filter chip hovers to `--otto-on-surface-300` |
 | Tooltip | `--otto-on-surface-800` fill, `--otto-surface-900` text |
 
 ## Reserved tokens

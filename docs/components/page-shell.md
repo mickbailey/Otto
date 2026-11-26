@@ -69,3 +69,19 @@ Sentence case unless noted. Be specific.
 | Date | Author | Change |
 | --- | --- | --- |
 | 2026-11-22 | Mick Bailey | Initial version |
+
+## Sticky bar
+
+`StickyBar` is a bar that slides in at the top once the page title scrolls out of view. It holds the page title and the page's actions, so they stay in reach on a long page. The account page uses it for the team and **New activity**; forms use it for **Cancel** (secondary) and **Submit** or **Save** (primary).
+
+```tsx
+<StickyBar title="New activity" watchId="new-activity-title">
+  <Button variant="secondary" onClick={cancel}>Cancel</Button>
+  <Button variant="primary" type="submit" form="new-activity-form">Submit</Button>
+</StickyBar>
+<PageHeader title="New activity" titleId="new-activity-title" />
+```
+
+- Give `PageHeader` a `titleId` and pass the same id as `watchId`.
+- A Submit button outside the `<form>` needs `form="<form id>"`.
+- Keep the buttons at the end of the form too; the bar repeats them, it doesn't replace them.

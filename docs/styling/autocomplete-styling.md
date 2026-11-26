@@ -21,14 +21,14 @@ Visual specs and usage. Rules live in [Autocomplete](../components/autocomplete.
 
 | State | Treatment |
 | --- | --- |
-| Option hover / active | `--otto-accent-800` |
-| Option selected | `--otto-accent-700` |
+| Option hover / active | `--otto-accent-900` |
+| Option selected | `--otto-accent-800` |
 | Control open | Border `--otto-on-surface-800` |
 
 ## Tokens
 
-- `--otto-accent-700`
 - `--otto-accent-800`
+- `--otto-accent-900`
 - `--otto-accent-200`
 - `--otto-shadow-menu`
 

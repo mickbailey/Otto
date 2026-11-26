@@ -103,7 +103,7 @@ export function Autocomplete<T>({ label, hideLabel, placeholder, options, getKey
                   role="option"
                   aria-selected={value ? getKey(value) === getKey(o) : false}
                   className="otto-combobox__option"
-                  style={{ background: i === active ? "var(--otto-accent-800)" : undefined }}
+                  style={{ background: i === active ? "var(--otto-accent-900)" : undefined }}
                   onMouseEnter={() => setActive(i)}
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() => pick(o)}
