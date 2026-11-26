@@ -24,7 +24,7 @@ Visual specs and usage. Rules live in [Avatar](../components/avatar.md). CSS: `d
 
 ## Tokens
 
-- `--otto-accent-700`
+- `--otto-accent-800`
 - `--otto-border`
 - `--otto-surface-900`
 

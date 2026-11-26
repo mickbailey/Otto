@@ -25,7 +25,7 @@ Don't use it:
 | --- | --- | --- |
 | **Default** | `otto-badge` | A neutral status with no particular urgency |
 | **Primary** | `otto-badge otto-badge--primary` | A highlighted status worth drawing the eye to (e.g. "New"). `--otto-primary-200` fill, `--otto-primary-800` text |
-| **Navy** | `otto-badge otto-badge--navy` | A status that should read as selected/active without using primary yellow. `--otto-accent-700` fill |
+| **Navy** | `otto-badge otto-badge--navy` | A status that should read as selected/active without using primary yellow. `--otto-accent-800` fill |
 | **Error** | `otto-badge otto-badge--error` | A failed or blocked status. `--otto-destructive-900` fill, white text |
 | **Exploration / Candidate / Final** | `otto-badge otto-badge--exploration/--candidate/--final` | Branch status pills marking where a UX exploration sits in its lifecycle. Final uses a `--otto-on-surface-300` fill with `--otto-success-200` text |
 

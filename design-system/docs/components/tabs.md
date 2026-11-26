@@ -25,9 +25,9 @@ Don't use it:
 
 | Part | Description |
 | --- | --- |
-| Tab list | `otto-tabs`, the row of tabs; scrolls horizontally if it overflows |
-| Tab | `otto-tab`, one `role="tab"` button per view |
-| Selection indicator | A 3px underline in `--otto-accent-200` under the selected tab |
+| Tab list | `otto-tabs`, the row of tabs (16px gap, 8px side padding); scrolls horizontally if it overflows |
+| Tab | `otto-tab`, one `role="tab"` button per view, 38px tall (4px top, 8px sides and bottom padding) |
+| Selection indicator | A 4px underline in `--otto-accent-200` under the selected tab |
 
 ## Behavior
 

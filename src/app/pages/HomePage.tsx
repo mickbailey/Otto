@@ -17,7 +17,7 @@ export function HomePage() {
       <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
         {tiles.map((t) => (
           <Link key={t.to} to={t.to} className="otto-card" style={{ padding: 20, display: "flex", flexDirection: "column", gap: 10 }}>
-            <span style={{ width: 40, height: 40, borderRadius: 8, background: "var(--otto-accent-800)", display: "grid", placeItems: "center", color: "var(--otto-accent-100)" }}><Icon name={t.icon} /></span>
+            <span style={{ width: 40, height: 40, borderRadius: 8, background: "var(--otto-accent-900)", display: "grid", placeItems: "center", color: "var(--otto-accent-100)" }}><Icon name={t.icon} /></span>
             <span className="otto-subtitle">{t.title}</span>
             <span className="otto-muted">{t.text}</span>
           </Link>

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  Autocomplete, Avatar, Button, Checkbox, Dialog, EmptyState, Icon, Input, Notice, PageHeader, Select, StandardPage, Tabs, Tag, Tags, Textarea, highlight, useToast,
+  Autocomplete, Avatar, Button, Checkbox, Dialog, EmptyState, Icon, Input, Notice, PageHeader, Select, StandardPage, StickyBar, Tabs, Tag, Tags, Textarea, highlight, useToast,
 } from "../../components/ds";
 import { CANDIDATES, REQUISITIONS, type Requisition } from "../../data/sample";
 import { BranchSwitch } from "../../branching/BranchContext";
@@ -155,17 +155,22 @@ export function NewActivityPage() {
 
   return (
     <>
+      <StickyBar title="New activity" watchId="new-activity-title">
+        <Button variant="secondary" onClick={() => setConfirmCancel(true)}>Cancel</Button>
+        <Button variant="primary" type="submit" form="new-activity-form">Submit</Button>
+      </StickyBar>
       <StandardPage
         aside={<><Notice>Requisition summary and screening questions use AI. Check for accuracy.</Notice>{panel}</>}
         header={
           <PageHeader
             title="New activity"
+            titleId="new-activity-title"
             back={`/candidates/${c.id}`}
             crumbs={[{ label: "Candidates", to: "/candidates" }, { label: c.name, to: `/candidates/${c.id}` }, { label: "Activity" }]}
           />
         }
       >
-        <form onSubmit={submit} noValidate className="otto-card">
+        <form id="new-activity-form" onSubmit={submit} noValidate className="otto-card">
           <div className="otto-card__header otto-contact">
             <strong>{c.name}</strong>
             <a href={`mailto:${c.email}`}><Icon name="mail" size={18} />{c.email}</a>

@@ -29,7 +29,7 @@ Visual specs and usage. Rules live in [Chips, Tags and Badges](../components/chi
 ## Tokens
 
 - `--otto-accent-200`
-- `--otto-accent-800`
+- `--otto-accent-900`
 - `--otto-primary-200`
 - `--otto-destructive-900`
 

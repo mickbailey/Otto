@@ -8,7 +8,7 @@ import { Portal, cx, useId } from "../primitives";
 export interface Crumb { label: string; to?: string }
 
 /** Title (Title Case), optional description, back link and actions. */
-export function PageHeader({ title, description, back, crumbs, actions }: { title: string; description?: ReactNode; back?: string; crumbs?: Crumb[]; actions?: ReactNode }) {
+export function PageHeader({ title, description, back, crumbs, actions, titleId }: { title: string; description?: ReactNode; back?: string; crumbs?: Crumb[]; actions?: ReactNode; /** Give the title an id so a StickyBar can watch it. */ titleId?: string }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
       {(crumbs || back) && (
@@ -24,10 +24,34 @@ export function PageHeader({ title, description, back, crumbs, actions }: { titl
       )}
       <div className="otto-page__head">
         <div style={{ display: "flex", flexDirection: "column", gap: 4, marginRight: "auto" }}>
-          <h1 className="otto-display">{title}</h1>
+          <h1 className="otto-display" id={titleId}>{title}</h1>
           {description && <p className="otto-muted" style={{ maxWidth: "72ch" }}>{description}</p>}
         </div>
         {actions && <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{actions}</div>}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Sticky bar: slides in at the top once the page title (the element with `watchId`) scrolls out of view.
+ * Carries the page title and the page's actions. Forms put Cancel and Submit here so they stay in reach on a long page.
+ * Submit buttons outside the <form> need `form="<form id>"`.
+ */
+export function StickyBar({ title, watchId, children }: { title: string; watchId: string; children?: ReactNode }) {
+  const [stuck, setStuck] = useState(false);
+  useEffect(() => {
+    const el = document.getElementById(watchId);
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setStuck(!e!.isIntersecting && e!.boundingClientRect.top < 0), { threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [watchId]);
+  return (
+    <div className={cx("otto-sticky", stuck && "is-on")} aria-hidden={!stuck}>
+      <div className="otto-sticky__bar">
+        <span className="otto-sticky__name">{title}</span>
+        <span className="otto-sticky__actions">{children}</span>
       </div>
     </div>
   );

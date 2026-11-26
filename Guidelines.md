@@ -157,6 +157,7 @@ Structure:
 * Use `ExpansionPanel` or titled cards for long forms with several topics; add `InPageNavigation` when people need to jump between sections.
 * Group related questions; keep helper copy next to its field.
 * Actions sit at the end of the form or section they control: **secondary Cancel, then primary Submit/Save**, left to right.
+* Forms get a `StickyBar` (the account page's sticky bar pattern): once the page title scrolls away, a bar holds the page title with **Cancel (secondary) and Submit/Save (primary)** so the actions stay in reach. The same buttons still sit at the end of the form. Give `PageHeader` a `titleId`, pass it as `watchId`, and point the Submit button at the form with `form="<id>"`.
 * Every exit from a form with unsaved work (Cancel or navigating away) uses the same discard dialog, and the destructive choice (Discard) is its primary action.
 
 ## Chips
@@ -189,8 +190,8 @@ Structure:
 ## Component states
 
 * **Focus:** 2px white (`--otto-on-surface-800`) outline on everything focusable; text fields show it on their outer border instead of around the bare input. Never rely on color change alone.
-* **Hover:** subtle, from tokens (`--otto-on-surface-300`, `--otto-accent-800`). No one-off hover colors.
-* **Selected / current:** distinct from hover. Accent (`--otto-accent-200`, `--otto-accent-700`) carries selection.
+* **Hover:** subtle, from tokens (`--otto-on-surface-300`, `--otto-accent-900`). No one-off hover colors.
+* **Selected / current:** distinct from hover. Accent (`--otto-accent-200`, `--otto-accent-800`) carries selection.
 * **Disabled:** `--otto-on-surface-400` for text and icons, plus an `--otto-on-surface-300` fill where the control has one. Never `opacity`. Not interactive, still visible. Don't hide unavailable options people need to know exist.
 * **Error:** `--otto-destructive-200` for text, borders and icons (never `--otto-destructive-800` as text on a dark surface; it fails contrast); messages specific and next to the problem.
 
@@ -234,6 +235,7 @@ Avoid vague labels (OK, Done, Yes) when a specific verb exists.
 
 ## Principles
 
+* **Team collaboration is the foundational principle.** Otto is a tool for people who work together, so the team and its shared wins are always on show, never tucked away. Surface who is on the work (avatar stacks, account teams, who did what and with whom) and celebrate shared success (origin stories like "Account broken in 2012 by...", recognition, milestones). Example: when the account page scrolls and the sticky bar appears, it keeps the account team's avatars visible next to the name. When you design a screen, ask where the team belongs on it and make that area stand out. Prefer people over counts, and names and faces over anonymous totals. Celebration stays warm and understated: it uses the existing components and tokens, and never uses primary yellow for it.
 * Intentional, detail-oriented and consistent. Proven patterns first, then creativity.
 * Prefer what's simple to build. Push for something new when the use case earns it.
 * **Never hide filter options because no data matches them right now.** A filter that returns nothing is expected; a missing option looks broken.

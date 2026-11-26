@@ -33,7 +33,7 @@ Don't use it:
 | --- | --- |
 | **Input** | Secondary fill with a remove button. |
 | **Filter / choice** | Outlined; `--otto-accent-200` fill and check when selected. |
-| **Tag** | `--otto-accent-800` fill, read-only. |
+| **Tag** | `--otto-accent-900` fill, read-only. |
 | **Badge** | Tones: default, primary, navy, error, exploration, candidate, final. |
 | **Pill** | Outlined metadata, e.g. an office location. |
 

@@ -285,7 +285,7 @@ function auditSystem() {
   const pairs = [
     ["--otto-on-surface-800", "--otto-surface-800", 4.5], ["--otto-on-surface-800", "--otto-surface-900", 4.5], ["--otto-on-surface-800", "--otto-surface-700", 4.5],
     ["--otto-on-surface-600", "--otto-surface-800", 4.5], ["--otto-on-surface-600", "--otto-surface-700", 4.5],
-    ["--otto-surface-900", "--otto-primary-800", 4.5], ["--otto-accent-100", "--otto-accent-700", 4.5], ["--otto-accent-100", "--otto-accent-800", 4.5],
+    ["--otto-surface-900", "--otto-primary-800", 4.5], ["--otto-accent-100", "--otto-accent-800", 4.5], ["--otto-accent-100", "--otto-accent-900", 4.5],
     ["--otto-on-surface-800", "--otto-accent-200", 4.5], ["--otto-destructive-200", "--otto-surface-800", 4.5], ["--otto-destructive-200", "--otto-surface-700", 4.5],
     ["--otto-success-200", "--otto-surface-800", 4.5],
   ];

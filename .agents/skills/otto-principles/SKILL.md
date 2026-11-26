@@ -9,6 +9,7 @@ These are the judgment rules that a linter can't fully check. Source of truth: `
 
 ## Product principles
 
+- **Team collaboration is the foundational principle.** Otto exists for people working together, so showcase the team and celebrate shared wins wherever a screen has the chance. Show who is on the work (avatar stacks, account teams, who did what with whom) and mark shared success (origin stories, milestones, recognition). Example: the account page's sticky bar keeps the team's avatars next to the account name as you scroll. On every screen ask "where does the team belong here?" and give that area visual weight. Favor people over counts; keep celebration warm and understated, using existing components and tokens (never primary yellow for it).
 - Intentional, detail-oriented, consistent. Proven patterns first, creativity second. Prefer what's simple to build.
 - Accessible by default: native elements, visible focus, AA contrast on every surface, a keyboard path for every interaction.
 - **Primary yellow is rare**: one primary action per area. Accent carries selection, chips, counts, the active tab.
@@ -24,7 +25,7 @@ These are the judgment rules that a linter can't fully check. Source of truth: `
 5. Parse, format and pre-fill when the UI can.
 6. Validation says what's wrong and how to fix it, sits under the field, replaces helper text. On submit show all errors and move focus to the first.
 7. Single column by default. Two columns only for short, independent, related fields. Long text, addresses and notes are full width.
-8. Actions at the end of the form or section: **Cancel (secondary), then Submit/Save (primary)**. Leaving with unsaved work always shows the same discard dialog; Discard is its primary, destructive action.
+8. Actions at the end of the form or section: **Cancel (secondary), then Submit/Save (primary)**. Forms also get a `StickyBar` with the page title and the same Cancel and Submit once the title scrolls away (see Guidelines, Form design). Leaving with unsaved work always shows the same discard dialog; Discard is its primary, destructive action.
 
 ## Copy
 
@@ -49,6 +50,7 @@ Empty (use `EmptyState` with a next step), loading, error, disabled-but-visible,
 
 ## Review checklist (use on your own output)
 
+- [ ] The team is visible where it matters (who is on the work, who did what) and shared wins are celebrated
 - [ ] Each area has at most one primary action
 - [ ] No placeholder on a data field (except search, NoteComposer)
 - [ ] Sentence case UI text; Title Case only where allowed

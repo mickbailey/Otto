@@ -10,6 +10,10 @@ Otto is a design-system-driven template for high-fidelity product prototypes (Re
 
 If your agent doesn't load skills automatically, read those files directly. `.claude/skills` is a symlink to `.agents/skills`.
 
+## Foundational principle: team collaboration
+
+Otto is built around team collaboration and team celebration. Showcase the team (avatar stacks, who did what with whom) and shared wins on every screen where they apply, as the account page's sticky bar does by keeping the team's avatars in view. Details in `Guidelines.md` (Principles) and `otto-principles`.
+
 ## Non-negotiables
 
 - Import UI from `src/components/ds` only, never `src/components/primitives`. No raw `<button>/<input>/<select>/<textarea>`.

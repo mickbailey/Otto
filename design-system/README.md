@@ -46,6 +46,7 @@ Then open `http://127.0.0.1:8420/site/`. Three tabs, all reading the real files 
 
 ## Principles
 
+- **Team collaboration comes first.** Otto is for people working together, so show the team and celebrate shared wins wherever a screen allows it: avatar stacks, who did what with whom, origin stories. The account page's sticky bar keeps the team's avatars next to the account name as you scroll. Favor people over counts, and keep celebration warm and understated, never primary yellow.
 - **Tokens, not hard-coded values.** Every color, size and space comes from `tokens.css`, so the whole system can be re-skinned in one place. No hex, no `color-mix`, no opacity tints: use a step that exists.
 - **Primary yellow is rare.** One primary action per area. Accent (`--otto-accent-200`) carries selection, chips, counts and the active tab.
 - **Concentric corners.** Surfaces (cards, panels, dialogs) are `--otto-radius-lg` (16px); everything inside a surface is `--otto-radius` (8px). Layered elements then nest cleanly.

@@ -12,5 +12,5 @@ export { Dialog, SideSheet, Banner } from "./Overlay";
 export { DataTable, Pagination, type Column } from "./DataTable";
 export { NoteComposer, type NoteComposerProps } from "./NoteComposer";
 export { Autocomplete, highlight } from "./Autocomplete";
-export { PageHeader, PageContainer, StandardPage, Card, EmptyState, ExpansionPanel, Tooltip, InPageNavigation, Notice, type InPageSection, type Crumb } from "./Page";
+export { PageHeader, StickyBar, PageContainer, StandardPage, Card, EmptyState, ExpansionPanel, Tooltip, InPageNavigation, Notice, type InPageSection, type Crumb } from "./Page";
 export { Icon, iconNames, type IconName } from "../primitives/Icon";
